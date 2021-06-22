@@ -9,3 +9,15 @@
 // Button to create class, which renders CreateClass modal
 // Shows punchpasses with ability to edit and delete. Edit renders EditPunchpass modal
 // Button to create punchpass, which renders CreatePunchpass modal
+
+import React from 'react';
+
+const Profile = () => {
+    return ( 
+        <div>
+            Profile page
+        </div>
+    )
+}
+
+export default Profile;

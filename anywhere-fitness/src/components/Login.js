@@ -4,7 +4,9 @@
 // On success, pushes to Profile page
 
 import React, { useState } from 'react';
-import axiosWithAuth from './../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
+
+// import axiosWithAuth from './../utils/axiosWithAuth';
 
 const initialValues = {
     name: '',
@@ -14,10 +16,12 @@ const initialValues = {
     }
 }
 
-const Login = () => {
+const Login = (props) => {
 
     const [state, setState] = useState(initialValues)
     console.log(state);
+
+    const history = useHistory();
 
     const handleChange = e => {
         setState({
@@ -34,15 +38,24 @@ const Login = () => {
         e.preventDefault(e)
         console.log("Submitted");
 
-        axiosWithAuth()
-            .post('http://localhost:5000/api/login', state.credentials)
-            .then(res => {
-            localStorage.setItem("token", res.data.payload);
-            this.props.history.push('/protected');
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        // delete this and uncomment below when endpoint is setup
+        history.push('/profile');
+        props.setAuth({
+            isAuth: true
+        })
+
+        // axiosWithAuth()
+        //     .post('http://localhost:5000/api/login', state.credentials)
+        //     .then(res => {
+        //     localStorage.setItem("token", res.data.payload);
+        //     history.push('/profile');
+        //     props.setAuth({
+        //         isAuth: true
+        //     })
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     })
     }
 
     return (
