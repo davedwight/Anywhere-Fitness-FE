@@ -4,9 +4,9 @@ import React from 'react';
 
 const Onboarding = (props) => {
     return (
-        <div>
+        <div className='container'>
             <h2>Welcome, {props.name}! Here's how to use this app.</h2>
-            <p>First</p>
+            <p>First....</p>
         </div>
     )
 };

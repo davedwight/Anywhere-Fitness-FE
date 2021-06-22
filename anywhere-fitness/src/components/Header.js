@@ -6,10 +6,12 @@ import { Link } from 'react-router-dom';
 
 const Header = (props) => {
     return(
-        <div>
+        <div className='container' id='header'>
             <h1>Anywhere Fitness</h1>
-            {props.isAuth ? <Link to='/profile'>Profile</Link> : <div></div>}
-            {props.isAuth ? <Link to='/login' onClick={props.handleLogout}>Logout</Link>: <div></div>}
+            <div className='nav'>
+                {props.isAuth ? <Link to='/profile'>Profile</Link> : <div></div>}
+                {props.isAuth ? <Link to='/login' onClick={props.handleLogout}>Logout</Link>: <div></div>}
+            </div>
         </div>
     )
 }

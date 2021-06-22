@@ -18,14 +18,12 @@ const App = () => {
 
   const [state, setState] = useState(initialValue);
 
-  const history = useHistory();
-
   const handleLogout = () => {
     // delete this first setState and uncomment below when endpoint is setup
     setState({
       isAuth: false
     })
-    history.push('/login');
+    window.location.href = '/login';
 
     // axiosWithAuth()
     // .post('/api/logout')
