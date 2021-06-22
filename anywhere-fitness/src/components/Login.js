@@ -7,17 +7,22 @@ import React, { useState } from 'react';
 import axiosWithAuth from './../utils/axiosWithAuth';
 
 const initialValues = {
+    name: '',
     credentials: {
         username: '',
         password: ''
     }
 }
+
 const Login = () => {
 
     const [state, setState] = useState(initialValues)
-   
+    console.log(state);
+
     const handleChange = e => {
         setState({
+            ...state,
+            [e.target.name]: e.target.value,
             credentials: {
                 ...state.credentials,
                 [e.target.name]: e.target.value
@@ -44,6 +49,14 @@ const Login = () => {
         <div>
             <h2>Form component</h2>
             <form onSubmit={handleSubmit}>
+                 <label>Name:
+                    <input
+                        type='text'
+                        name='name'
+                        value={state.name}
+                        onChange={handleChange}
+                    />
+                </label>
                 <label>Username:
                     <input
                         type='text'
