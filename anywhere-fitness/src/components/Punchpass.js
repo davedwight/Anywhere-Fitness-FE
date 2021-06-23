@@ -12,11 +12,12 @@ const Punchpass = (props) => {
 
     const { type, punches_used, punches_available } = props.info;
     return (
-        <div id='class'>
-            <p>{type}</p>
-            <p>{punches_used}</p>
-            <p>{punches_available}</p>
-        </div>
+        <tr className='table-data-row' id='punchpass'>
+            <td>{type}</td>
+            <td>{punches_used}</td>
+            <td>{punches_available}</td>
+            <button>Remove pass</button>
+        </tr>
     )
 }
 

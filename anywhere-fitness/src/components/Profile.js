@@ -89,16 +89,16 @@ const Profile = () => {
             <h2>Profile page</h2>
 
             <h3>Your Classes</h3>
+            <button>Find a class</button>
             <div id='class-list-container'>
                 <ClassList classes={state.classes}/>
             </div>
-            <button>Find a class</button>
             
             <h3>Your Punchpasses</h3>
+            <button>Find a punchpass</button>
             <div id='punchpass-list-container'>
                 <PunchpassList punchpasses={state.punchpasses} />
             </div>
-            <button>Find a punchpass</button>
 
         </div>
     )

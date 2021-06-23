@@ -13,17 +13,19 @@ const Class = (props) => {
 
     const { name, time, date, duration, type, intensity, location, current_attendees, class_size } = props.info;
     return (
-        <div id='class'>
-            <p>{name}</p>
-            <p>{time}</p>
-            <p>{date}</p>
-            <p>{duration}</p>
-            <p>{type}</p>
-            <p>{intensity}</p>
-            <p>{location}</p>
-            <p>{current_attendees}</p>
-            <p>{class_size}</p>
-        </div>
+        <tr className='table-data-row' id='class'>
+            <td>{name}</td>
+            <td>{time}</td>
+            <td>{date}</td>
+            <td>{duration}</td>
+            <td>{type}</td>
+            <td>{intensity}</td>
+            <td>{location}</td>
+            <td>{current_attendees}</td>
+            <td>{class_size}</td>
+            <button>Reschedule</button>
+            <button>Cancel</button>
+        </tr>
     )
 }
 
