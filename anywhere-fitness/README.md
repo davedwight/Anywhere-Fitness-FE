@@ -68,3 +68,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+------------------------
+
+Navigate to login by default. If logged in, then go to profile
+
+If first time logged in, then go to onboarding, else go straight to profile
+
+Nest renders error
+
+How to handle different components with different types of users
+
+How to git pull force?
+
+What to do if you realized  you were working on main?
+
+What to do if you submit a PR and then want to keep working on relevant components?
+

@@ -16,7 +16,7 @@ const Punchpass = (props) => {
             <td>{type}</td>
             <td>{punches_used}</td>
             <td>{punches_available}</td>
-            <button>Remove pass</button>
+            <td><button>Remove pass</button></td>
         </tr>
     )
 }
