@@ -12,9 +12,18 @@ import Punchpass from './Punchpass';
 const PunchpassList = (props) => {
     return (
         <div className='container'>
-            {props.punchpasses.map(p => (
-                <Punchpass key={p.id} info={p}/>
-            ))}
+            <table>
+                <tbody>
+                <tr className='table-header-row'>
+                    <th>Type</th>
+                    <th>Used punches</th>
+                    <th>Total punches</th>
+                </tr>
+                {props.punchpasses.map(p => (
+                    <Punchpass key={p.id} info={p}/>
+                ))}
+                </tbody>
+            </table>
         </div>
     )
 }
