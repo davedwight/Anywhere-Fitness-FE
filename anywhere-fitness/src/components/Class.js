@@ -11,6 +11,14 @@ import React from 'react';
 
 const Class = (props) => {
 
+    const handleReschedule = () => {
+        console.log('reschedule');
+    }
+
+    const handleCancel = () => {
+        console.log('cancel');
+    }
+
     const { name, time, date, duration, type, intensity, location, current_attendees, class_size } = props.info;
     return (
         <tr className='table-data-row' id='class'>
@@ -23,8 +31,8 @@ const Class = (props) => {
             <td>{location}</td>
             <td>{current_attendees}</td>
             <td>{class_size}</td>
-            <button>Reschedule</button>
-            <button>Cancel</button>
+            <td><button onClick={handleReschedule}>Reschedule</button></td>
+            <td><button onClick={handleCancel}>Cancel</button></td>
         </tr>
     )
 }
