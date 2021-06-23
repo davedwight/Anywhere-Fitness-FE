@@ -15,6 +15,10 @@ import axiosWithAuth from './../utils/axiosWithAuth';
 
 import ClassList from './ClassList';
 import PunchpassList from './PunchpassList';
+import Modal from './Modal';
+import RescheduleClass from './RescheduleClass';
+import CancelClass from './CancelClass';
+import CancelPunchpass from './CancelPunchpass';
 
 const initialValue = {
     classes: [
@@ -61,14 +65,16 @@ const initialValue = {
 
 const Profile = () => {
 
-    const [state, setState] = useState(initialValue)
+    const [data, setData] = useState(initialValue);
+    const [isModal, setIsModal] = useState(false);
+    const [typeModal, setTypeModal] = useState('')
     
     const getData = () => {
         console.log("Data received");
         // axiosWithAuth()
         //     .get('api/classes')
         //     .then(res => {
-        //         setState({
+        //         setData({
                 //     classes: res.data.classes,
                 //     punchpasses: res.data.punchpasses
                        
@@ -83,6 +89,49 @@ const Profile = () => {
         getData();
     }, [])
 
+    const handleModalCancel = () => {
+        setIsModal(false);
+        setTypeModal('');
+    }
+
+    const handleClassCancel = () => {
+        setTypeModal('success');
+        // axiosWithAuth()
+        //     .delete(`/api/delete/${id}`)
+        //     .then(res => {
+        //         setTypeModal('success');
+        //     })
+        //     .catch(err => {
+        //         setTypeModal('error');
+        //     })
+    }
+
+
+    const handleClassReschedule = () => {
+        setTypeModal('success');
+        // axiosWithAuth()
+        //     .put(`/api/delete/${id}`, someData)
+        //     .then(res => {
+        //         setTypeModal('success');
+        //     })
+        //     .catch(err => {
+        //         setTypeModal('error');
+        //     })
+    }
+
+
+    const handlePunchpassCancel = () => {
+        setTypeModal('success');
+        // axiosWithAuth()
+        //     .delete(`/api/delete/${id}`)
+        //     .then(res => {
+        //         setTypeModal('success');
+        //     })
+        //     .catch(err => {
+        //         setTypeModal('error');
+        //     })
+    }
+
     return ( 
         <div className='container'>
 
@@ -91,14 +140,24 @@ const Profile = () => {
             <h3>Your Classes</h3>
             <button>Find a class</button>
             <div id='class-list-container'>
-                <ClassList classes={state.classes}/>
+                <ClassList classes={data.classes} setTypeModal={setTypeModal} setIsModal={setIsModal} />
             </div>
             
             <h3>Your Punchpasses</h3>
             <button>Find a punchpass</button>
             <div id='punchpass-list-container'>
-                <PunchpassList punchpasses={state.punchpasses} />
+                <PunchpassList punchpasses={data.punchpasses} setTypeModal={setTypeModal} setIsModal={setIsModal} />
             </div>
+
+            { isModal ? 
+                <Modal 
+                    typeModal={typeModal} 
+                    handleModalCancel={handleModalCancel}
+                    handleClassCancel={handleClassCancel}
+                    handleClassReschedule={handleClassReschedule}
+                    handlePunchpassCancel={handlePunchpassCancel}
+                /> 
+                : null}
 
         </div>
     )
