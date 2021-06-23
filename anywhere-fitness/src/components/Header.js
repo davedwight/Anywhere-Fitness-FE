@@ -2,15 +2,40 @@
 // Has nav bar that links to My Profile, Classes, and Punchpasses
 // Has logout button that logs out a user (removes token and pushes to Login)
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Header = (props) => {
+
+    const history = useHistory();
+
+    const handleLogout = async () => {
+        // delete this first setState and uncomment below when endpoint is setup
+        props.setAuth({
+          isAuth: false
+        })
+        history.push('/login');
+        // await asyncChangeWindow();
+    
+        // axiosWithAuth()
+        // .post('/api/logout')
+        // .then(res => {
+        //   localStorage.removeItem('token');
+        //   history.push('/login');
+        //   setState({
+        //     isAuth: false
+        //   })
+        // })
+        // .catch(err => {
+        //   console.log(err);
+        // })
+      }
+
     return(
         <div className='container' id='header'>
             <h1>Anywhere Fitness</h1>
             <div className='nav'>
                 {props.isAuth ? <Link to='/profile'>Profile</Link> : <div></div>}
-                {props.isAuth ? <Link to='/login' onClick={props.handleLogout}>Logout</Link>: <div></div>}
+                {props.isAuth ? <Link to='/login' onClick={handleLogout}>Logout</Link>: <div></div>}
             </div>
         </div>
     )
