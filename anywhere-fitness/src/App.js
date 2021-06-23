@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router';
 
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
@@ -17,43 +18,34 @@ const initialValue = {
 const App = () => {
 
   const [state, setState] = useState(initialValue);
+  // const history = useHistory();
 
-  const handleLogout = () => {
-    // delete this first setState and uncomment below when endpoint is setup
-    setState({
-      isAuth: false
-    })
-    window.location.href = '/login';
+  // const changeWindow = () => {
+  //   window.location.href = '/login';
+  // }
 
-    // axiosWithAuth()
-    // .post('/api/logout')
-    // .then(res => {
-    //   localStorage.removeItem('token');
-    //   history.push('/login');
-    //   setState({
-    //     isAuth: false
-    //   })
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    // })
-  }
+//   function asyncChangeWindow(){
+//     return new Promise((resolve,reject)=>{
+//       changeWindow();
+//     });
+// }
+
 
   return (
     <Router>
       <div className="App"> 
-        <Header isAuth={state.isAuth} handleLogout={handleLogout}/>
+        <Header isAuth={state.isAuth} setAuth={setState} />
       
         <Switch>
 
           <PrivateRoute
             isAuth={state.isAuth}
-            exact path='/profile'>
-            <Profile />
-          </PrivateRoute>
+            exact path='/profile'
+            component={Profile}
+          />
 
-          <Route path='/login'>
-            <Login setAuth={setState} />
+          <Route path='/'>
+            {state.isAuth ? <Redirect to='/profile' /> : <Login setAuth={setState} />}
           </Route>
         
         </Switch>
