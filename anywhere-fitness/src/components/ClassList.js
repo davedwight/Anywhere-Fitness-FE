@@ -5,6 +5,9 @@ import React from 'react';
 import Class from './Class';
 
 const ClassList = (props) => {
+
+    const { classes, setTypeModal, setIsModal } = props;
+
     return (
         <div className='container'>
             <table>
@@ -20,8 +23,8 @@ const ClassList = (props) => {
                     <th>Current Attendees</th>
                     <th>Max Attendees</th>
                 </tr>
-                {props.classes.map(c => (
-                    <Class key={c.id} info={c}/>
+                {classes.map(c => (
+                    <Class key={c.id} info={c} setTypeModal={setTypeModal} setIsModal={setIsModal}/>
                 ))}
                 </tbody>
             </table>

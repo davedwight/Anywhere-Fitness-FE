@@ -17,17 +17,13 @@ const Class = (props) => {
     const [rescheduleModal, setRescheduleModal] = useState(false);
 
     const handleReschedule = () => {
-        console.log('reschedule');
-        axiosWithAuth()
-            .put
-            .then(res => {
-
-            })
-
+        props.setIsModal(true);
+        props.setTypeModal('rescheduleClass')
     }
 
     const handleCancel = () => {
-        console.log('cancel');
+        props.setIsModal(true);
+        props.setTypeModal('cancelClass')
     }
 
     const { name, time, date, duration, type, intensity, location, current_attendees, class_size } = props.info;
