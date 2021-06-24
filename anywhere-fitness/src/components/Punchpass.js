@@ -10,13 +10,18 @@ import React from 'react';
 
 const Punchpass = (props) => {
 
+    const handleRemovePass = () => {
+        props.setIsModal(true);
+        props.setTypeModal('cancelPunchpass');
+    }
+
     const { type, punches_used, punches_available } = props.info;
     return (
         <tr className='table-data-row' id='punchpass'>
             <td>{type}</td>
             <td>{punches_used}</td>
             <td>{punches_available}</td>
-            <td><button>Remove pass</button></td>
+            <td><button onClick={handleRemovePass}>Remove pass</button></td>
         </tr>
     )
 }

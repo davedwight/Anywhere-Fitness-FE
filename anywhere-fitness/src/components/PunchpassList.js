@@ -9,7 +9,11 @@ import React from 'react';
 
 import Punchpass from './Punchpass';
 
+
 const PunchpassList = (props) => {
+
+    const { punchpasses, setTypeModal, setIsModal } = props;
+
     return (
         <div className='container'>
             <table>
@@ -19,8 +23,8 @@ const PunchpassList = (props) => {
                     <th>Used punches</th>
                     <th>Total punches</th>
                 </tr>
-                {props.punchpasses.map(p => (
-                    <Punchpass key={p.id} info={p}/>
+                {punchpasses.map(p => (
+                    <Punchpass key={p.id} info={p} setTypeModal={setTypeModal} setIsModal={setIsModal}/>
                 ))}
                 </tbody>
             </table>

@@ -7,16 +7,23 @@
 // Displays name, time, date, duration, type, intensity, location, current registered attendees, max class size
 // Has edit button that renders EditClass
 // Has delete button
-import React from 'react';
+import React, { useState } from 'react';
+
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const Class = (props) => {
 
+    const [cancelModal, setCancelModal] = useState(false);
+    const [rescheduleModal, setRescheduleModal] = useState(false);
+
     const handleReschedule = () => {
-        console.log('reschedule');
+        props.setIsModal(true);
+        props.setTypeModal('rescheduleClass')
     }
 
     const handleCancel = () => {
-        console.log('cancel');
+        props.setIsModal(true);
+        props.setTypeModal('cancelClass')
     }
 
     const { name, time, date, duration, type, intensity, location, current_attendees, class_size } = props.info;
