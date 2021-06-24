@@ -60,7 +60,7 @@ const Login = (props) => {
 
     return (
         <div className='container'>
-            <h2>Form component</h2>
+            <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                  <label>Name:
                     <input

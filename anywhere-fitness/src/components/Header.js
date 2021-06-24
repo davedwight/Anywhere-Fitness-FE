@@ -30,6 +30,12 @@ const Header = (props) => {
         // })
       }
 
+    //   const handleSearchPunchpassesClick = () => {
+    //     history.push('/search-punchpasses');
+    //   }
+
+
+
     return(
         <div className='container' id='header'>
             <h1>Anywhere Fitness</h1>

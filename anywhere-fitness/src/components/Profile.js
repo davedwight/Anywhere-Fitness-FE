@@ -16,9 +16,6 @@ import axiosWithAuth from './../utils/axiosWithAuth';
 import ClassList from './ClassList';
 import PunchpassList from './PunchpassList';
 import Modal from './Modal';
-import RescheduleClass from './RescheduleClass';
-import CancelClass from './CancelClass';
-import CancelPunchpass from './CancelPunchpass';
 
 const initialValue = {
     classes: [
