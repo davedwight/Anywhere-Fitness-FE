@@ -24,11 +24,9 @@ const App = () => {
   const [state, setState] = useState(initialValue);
  
   return (
-    <Router>
       <div className="App"> 
         <Header isAuth={state.isAuth} setAuth={setState} />
       
-        <Switch>
 
           <PrivateRoute
             isAuth={state.isAuth}
@@ -36,27 +34,25 @@ const App = () => {
             component={Profile}
           />
 
-          <Route exact path='/signup'>
+          <Route path='/signup'>
             <SignUp setAuth={setState} />
           </Route>
 
-          <Route exact path='/onboarding' component={Onboarding} />
+          <Route path='/onboarding' component={Onboarding} />
 
-          <Route exact path='search-classes'>
+          <Route path='/search-classes'>
             <SearchClasses />
           </Route>
 
-          <Route exact path='search-punchpasses'>
+          <Route path='/search-punchpasses'>
             <SearchPunchpasses />
           </Route>
 
-          <Route path='/'>
+          <Route exact path='/'>
             {state.isAuth ? <Redirect to='/profile' /> : <Login setAuth={setState} />}
           </Route>
         
-        </Switch>
       </div>
-    </Router>
   );
 }
 

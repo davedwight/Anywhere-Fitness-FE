@@ -14,11 +14,13 @@ import Punchpass from './Punchpass';
 
 const initialValues = [
     {
+        id: 1,
         type: 'cardio', 
         punches_used: 6, 
         punches_available: 10
     },
     {
+        id: 2,
         type: 'cardio', 
         punches_used: 6, 
         punches_available: 10

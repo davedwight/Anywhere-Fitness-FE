@@ -13,7 +13,7 @@ const Header = (props) => {
         props.setAuth({
           isAuth: false
         })
-        history.push('/login');
+        // history.push('/login');
         // await asyncChangeWindow();
     
         // axiosWithAuth()

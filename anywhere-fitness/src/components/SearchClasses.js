@@ -9,6 +9,7 @@ import Class from './Class';
 
 const initialValues = [
     {
+        id: 1,
         name: 'Run fast',
         date: 'June 28',
         duration: '2 hrs',
@@ -19,6 +20,7 @@ const initialValues = [
         class_size: 20
     },
     {
+        id: 2,
         name: 'Run fast',
         date: 'June 28',
         duration: '2 hrs',
