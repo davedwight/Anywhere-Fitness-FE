@@ -6,6 +6,10 @@ import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
 import Profile from './components/Profile';
+import SignUp from './components/Signup';
+import Onboarding from './components/Onboarding';
+import SearchClasses from './components/SearchClasses';
+import SearchPunchpasses from './components/SearchPunchpasses';
 
 // import axiosWithAuth from './utils/axiosWithAuth';
 
@@ -18,25 +22,11 @@ const initialValue = {
 const App = () => {
 
   const [state, setState] = useState(initialValue);
-  // const history = useHistory();
-
-  // const changeWindow = () => {
-  //   window.location.href = '/login';
-  // }
-
-//   function asyncChangeWindow(){
-//     return new Promise((resolve,reject)=>{
-//       changeWindow();
-//     });
-// }
-
-
+ 
   return (
-    <Router>
       <div className="App"> 
         <Header isAuth={state.isAuth} setAuth={setState} />
       
-        <Switch>
 
           <PrivateRoute
             isAuth={state.isAuth}
@@ -44,13 +34,29 @@ const App = () => {
             component={Profile}
           />
 
-          <Route path='/'>
+          <Route path='/signup'>
+            <SignUp setAuth={setState} />
+          </Route>
+
+          <Route path='/onboarding' component={Onboarding} />
+
+          <Route path='/search-classes'>
+            <SearchClasses />
+          </Route>
+
+          <Route path='/search-punchpasses'>
+            <SearchPunchpasses />
+          </Route>
+
+          <Route path='/login'>
+            {state.isAuth ? <Redirect to='/profile' /> : <Login setAuth={setState} />}
+          </Route>
+
+          <Route exact path='/'>
             {state.isAuth ? <Redirect to='/profile' /> : <Login setAuth={setState} />}
           </Route>
         
-        </Switch>
       </div>
-    </Router>
   );
 }
 

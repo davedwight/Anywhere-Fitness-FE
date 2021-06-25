@@ -30,12 +30,21 @@ const Header = (props) => {
         // })
       }
 
+    //   const handleSearchPunchpassesClick = () => {
+    //     history.push('/search-punchpasses');
+    //   }
+
+
+
     return(
         <div className='container' id='header'>
             <h1>Anywhere Fitness</h1>
             <div className='nav'>
+                {!props.isAuth ? <Link to='/signup'>Sign Up</Link> : <div></div>}
                 {props.isAuth ? <Link to='/profile'>Profile</Link> : <div></div>}
-                {props.isAuth ? <Link to='/login' onClick={handleLogout}>Logout</Link>: <div></div>}
+                {props.isAuth ? <Link to='/search-classes'>Search Classes</Link>: <div></div>}
+                {props.isAuth ? <Link to='/search-punchpasses'>Search Punchpasses</Link>: <div></div>}
+                {props.isAuth ? <Link to='#' onClick={handleLogout}>Logout</Link> : <div></div>}
             </div>
         </div>
     )

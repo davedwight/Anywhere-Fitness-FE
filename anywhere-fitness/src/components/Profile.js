@@ -16,9 +16,6 @@ import axiosWithAuth from './../utils/axiosWithAuth';
 import ClassList from './ClassList';
 import PunchpassList from './PunchpassList';
 import Modal from './Modal';
-import RescheduleClass from './RescheduleClass';
-import CancelClass from './CancelClass';
-import CancelPunchpass from './CancelPunchpass';
 
 const initialValue = {
     classes: [
@@ -138,13 +135,11 @@ const Profile = () => {
             <h2>Profile page</h2>
 
             <h3>Your Classes</h3>
-            <button>Find a class</button>
             <div id='class-list-container'>
                 <ClassList classes={data.classes} setTypeModal={setTypeModal} setIsModal={setIsModal} />
             </div>
             
             <h3>Your Punchpasses</h3>
-            <button>Find a punchpass</button>
             <div id='punchpass-list-container'>
                 <PunchpassList punchpasses={data.punchpasses} setTypeModal={setTypeModal} setIsModal={setIsModal} />
             </div>
