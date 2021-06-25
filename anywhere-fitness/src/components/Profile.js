@@ -135,13 +135,11 @@ const Profile = () => {
             <h2>Profile page</h2>
 
             <h3>Your Classes</h3>
-            <button>Find a class</button>
             <div id='class-list-container'>
                 <ClassList classes={data.classes} setTypeModal={setTypeModal} setIsModal={setIsModal} />
             </div>
             
             <h3>Your Punchpasses</h3>
-            <button>Find a punchpass</button>
             <div id='punchpass-list-container'>
                 <PunchpassList punchpasses={data.punchpasses} setTypeModal={setTypeModal} setIsModal={setIsModal} />
             </div>

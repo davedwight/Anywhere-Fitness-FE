@@ -13,7 +13,7 @@ const Header = (props) => {
         props.setAuth({
           isAuth: false
         })
-        // history.push('/login');
+        history.push('/login');
         // await asyncChangeWindow();
     
         // axiosWithAuth()
@@ -44,7 +44,7 @@ const Header = (props) => {
                 {props.isAuth ? <Link to='/profile'>Profile</Link> : <div></div>}
                 {props.isAuth ? <Link to='/search-classes'>Search Classes</Link>: <div></div>}
                 {props.isAuth ? <Link to='/search-punchpasses'>Search Punchpasses</Link>: <div></div>}
-                {props.isAuth ? <Link to='/login' onClick={handleLogout}>Logout</Link>: <div></div>}
+                {props.isAuth ? <Link to='#' onClick={handleLogout}>Logout</Link> : <div></div>}
             </div>
         </div>
     )

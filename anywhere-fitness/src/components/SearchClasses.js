@@ -5,12 +5,13 @@
 import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
-import Class from './Class';
+import SearchClass from './SearchClass';
 
 const initialValues = [
     {
         id: 1,
         name: 'Run fast',
+        time: '2pm',
         date: 'June 28',
         duration: '2 hrs',
         type: 'cardio',
@@ -22,6 +23,7 @@ const initialValues = [
     {
         id: 2,
         name: 'Run fast',
+        time: '4pm',
         date: 'June 28',
         duration: '2 hrs',
         type: 'cardio',
@@ -68,7 +70,7 @@ const SearchClasses = (props) => {
                     <th>Max Attendees</th>
                 </tr>
                 {classes.map(c => (
-                    <Class key={c.id} info={c}/>
+                    <SearchClass key={c.id} info={c} setClasses={setClasses} />
                 ))}
                 </tbody>
             </table>

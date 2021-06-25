@@ -7,7 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
 import Profile from './components/Profile';
 import SignUp from './components/Signup';
-import Onboarding from './components/Signup';
+import Onboarding from './components/Onboarding';
 import SearchClasses from './components/SearchClasses';
 import SearchPunchpasses from './components/SearchPunchpasses';
 
@@ -46,6 +46,10 @@ const App = () => {
 
           <Route path='/search-punchpasses'>
             <SearchPunchpasses />
+          </Route>
+
+          <Route path='/login'>
+            {state.isAuth ? <Redirect to='/profile' /> : <Login setAuth={setState} />}
           </Route>
 
           <Route exact path='/'>
