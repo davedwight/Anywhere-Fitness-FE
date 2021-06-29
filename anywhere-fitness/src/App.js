@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router';
 
 import Login from './components/Login';
@@ -10,6 +10,7 @@ import SignUp from './components/Signup';
 import Onboarding from './components/Onboarding';
 import SearchClasses from './components/SearchClasses';
 import SearchPunchpasses from './components/SearchPunchpasses';
+import Modal from './components/Modal';
 
 // import axiosWithAuth from './utils/axiosWithAuth';
 
@@ -22,14 +23,73 @@ const initialValue = {
 const App = () => {
 
   const [state, setState] = useState(initialValue);
- 
+  const [isModal, setIsModal] = useState(false);
+  const [typeModal, setTypeModal] = useState('');
+
+  const handleModalCancel = () => {
+    setIsModal(false);
+    setTypeModal('');
+  }
+
+  const handleClassCancel = () => {
+      setTypeModal('success');
+      // axiosWithAuth()
+      //     .delete(`/api/delete/${id}`)
+      //     .then(res => {
+      //         setTypeModal('success');
+      //     })
+      //     .catch(err => {
+      //         setTypeModal('error');
+      //     })
+  }
+
+
+  const handleClassReschedule = () => {
+      setTypeModal('success');
+      // axiosWithAuth()
+      //     .put(`/api/delete/${id}`, someData)
+      //     .then(res => {
+      //         setTypeModal('success');
+      //     })
+      //     .catch(err => {
+      //         setTypeModal('error');
+      //     })
+  }
+
+
+  const handlePunchpassCancel = () => {
+      setTypeModal('success');
+      // axiosWithAuth()
+      //     .delete(`/api/delete/${id}`)
+      //     .then(res => {
+      //         setTypeModal('success');
+      //     })
+      //     .catch(err => {
+      //         setTypeModal('error');
+      //     })
+  }
+
   return (
       <div className="App"> 
         <Header isAuth={state.isAuth} setAuth={setState} />
+
+        { 
+          isModal ? 
+          <Modal 
+              typeModal={typeModal} 
+              handleModalCancel={handleModalCancel}
+              handleClassCancel={handleClassCancel}
+              handleClassReschedule={handleClassReschedule}
+              handlePunchpassCancel={handlePunchpassCancel}
+          /> 
+          : null
+        }
       
 
           <PrivateRoute
             isAuth={state.isAuth}
+            setIsModal={setIsModal}
+            setTypeModal={setTypeModal}
             exact path='/profile'
             component={Profile}
           />
@@ -41,11 +101,17 @@ const App = () => {
           <Route path='/onboarding' component={Onboarding} />
 
           <Route path='/search-classes'>
-            <SearchClasses />
+            <SearchClasses 
+              setIsModal={setIsModal}
+              setTypeModal={setTypeModal}
+            />
           </Route>
 
           <Route path='/search-punchpasses'>
-            <SearchPunchpasses />
+            <SearchPunchpasses 
+              setIsModal={setIsModal}
+              setTypeModal={setTypeModal}
+            />
           </Route>
 
           <Route path='/login'>

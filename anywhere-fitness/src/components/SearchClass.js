@@ -13,17 +13,19 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 const SearchClass = (props) => {
 
+    const { setClasses, setIsModal, setTypeModal } = props;
     const [cancelModal, setCancelModal] = useState(false);
     const [rescheduleModal, setRescheduleModal] = useState(false);
 
     const handleAdd = () => {
-        props.setIsModal(true);
-        props.setTypeModal('addClass');
+        setIsModal(true);
+        setTypeModal('signUpClass');
 
         // axiosWithAuth()
         //     .post('/api/add-class', props.info)
         //     .then(res => {
         //         //set class state in my classes to reflect backend change
+        //          setClasses(res.data);
         //     })
         //     .catch(err => {
         //         console.log(err)

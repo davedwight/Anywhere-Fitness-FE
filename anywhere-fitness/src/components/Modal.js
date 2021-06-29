@@ -43,6 +43,15 @@ const Modal = (props) => {
                 </div>
             </div>
         )
+    } else if (props.typeModal === 'signUpClass') {
+        return (
+            <div className='modal-container'>
+                <div className='modal'>
+                    <p>You've successfully signed up for this class. You can reschedule or remove this class in your profile.</p>
+                    <button onClick={props.handleModalCancel}>Ok</button>
+                </div>
+            </div>
+        )
     } else {
         return (
             <div className='modal-container'>

@@ -36,6 +36,8 @@ const initialValues = [
 
 const SearchClasses = (props) => {
 
+    const { setIsModal, setTypeModal } = props;
+
     const [classes, setClasses] = useState(initialValues);
 
     const getData = () => {
@@ -70,7 +72,7 @@ const SearchClasses = (props) => {
                     <th>Max Attendees</th>
                 </tr>
                 {classes.map(c => (
-                    <SearchClass key={c.id} info={c} setClasses={setClasses} />
+                    <SearchClass key={c.id} info={c} setClasses={setClasses} setIsModal={setIsModal} setTypeModal={setTypeModal} />
                 ))}
                 </tbody>
             </table>

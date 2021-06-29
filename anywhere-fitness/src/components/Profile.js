@@ -15,7 +15,6 @@ import axiosWithAuth from './../utils/axiosWithAuth';
 
 import ClassList from './ClassList';
 import PunchpassList from './PunchpassList';
-import Modal from './Modal';
 
 const initialValue = {
     classes: [
@@ -60,11 +59,13 @@ const initialValue = {
     ]
 };
 
-const Profile = () => {
+const Profile = (props) => {
 
     const [data, setData] = useState(initialValue);
-    const [isModal, setIsModal] = useState(false);
-    const [typeModal, setTypeModal] = useState('')
+    // const [isModal, setIsModal] = useState(false);
+    // const [typeModal, setTypeModal] = useState('');
+
+    const { setIsModal, setTypeModal } = props;
     
     const getData = () => {
         console.log("Data received");
@@ -86,49 +87,6 @@ const Profile = () => {
         getData();
     }, [])
 
-    const handleModalCancel = () => {
-        setIsModal(false);
-        setTypeModal('');
-    }
-
-    const handleClassCancel = () => {
-        setTypeModal('success');
-        // axiosWithAuth()
-        //     .delete(`/api/delete/${id}`)
-        //     .then(res => {
-        //         setTypeModal('success');
-        //     })
-        //     .catch(err => {
-        //         setTypeModal('error');
-        //     })
-    }
-
-
-    const handleClassReschedule = () => {
-        setTypeModal('success');
-        // axiosWithAuth()
-        //     .put(`/api/delete/${id}`, someData)
-        //     .then(res => {
-        //         setTypeModal('success');
-        //     })
-        //     .catch(err => {
-        //         setTypeModal('error');
-        //     })
-    }
-
-
-    const handlePunchpassCancel = () => {
-        setTypeModal('success');
-        // axiosWithAuth()
-        //     .delete(`/api/delete/${id}`)
-        //     .then(res => {
-        //         setTypeModal('success');
-        //     })
-        //     .catch(err => {
-        //         setTypeModal('error');
-        //     })
-    }
-
     return ( 
         <div className='container'>
 
@@ -143,16 +101,6 @@ const Profile = () => {
             <div id='punchpass-list-container'>
                 <PunchpassList punchpasses={data.punchpasses} setTypeModal={setTypeModal} setIsModal={setIsModal} />
             </div>
-
-            { isModal ? 
-                <Modal 
-                    typeModal={typeModal} 
-                    handleModalCancel={handleModalCancel}
-                    handleClassCancel={handleClassCancel}
-                    handleClassReschedule={handleClassReschedule}
-                    handlePunchpassCancel={handlePunchpassCancel}
-                /> 
-                : null}
 
         </div>
     )
