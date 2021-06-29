@@ -10,13 +10,13 @@
 // Shows punchpasses with ability to edit and delete. Edit renders EditPunchpass modal
 // Button to create punchpass, which renders CreatePunchpass modal
 
-import React, { useState, useEffect } from 'react';
-import axiosWithAuth from './../utils/axiosWithAuth';
+import React, { useEffect } from 'react';
+// import axiosWithAuth from './../utils/axiosWithAuth';
 
 import ClassList from './ClassList';
 import PunchpassList from './PunchpassList';
 
-const initialValue = {
+const mockGetClientItems = {
     classes: [
         {
             id: 1,
@@ -61,22 +61,15 @@ const initialValue = {
 
 const Profile = (props) => {
 
-    const [data, setData] = useState(initialValue);
-    // const [isModal, setIsModal] = useState(false);
-    // const [typeModal, setTypeModal] = useState('');
-
-    const { setIsModal, setTypeModal } = props;
+    const { setIsModal, setTypeModal, clientItems, setClientItems } = props;
     
     const getData = () => {
-        console.log("Data received");
+        console.log("Inside Profile getData");
+        setClientItems(mockGetClientItems);
         // axiosWithAuth()
-        //     .get('api/classes')
+        //     .get('/api/client-items')
         //     .then(res => {
-        //         setData({
-                //     classes: res.data.classes,
-                //     punchpasses: res.data.punchpasses
-                       
-        //         })
+        //         setClientItems(res.data);
         //     })
         //     .catch(err => {
         //         console.log(err);
@@ -85,7 +78,7 @@ const Profile = (props) => {
 
     useEffect(() => {
         getData();
-    }, [])
+    }, []);
 
     return ( 
         <div className='container'>
@@ -94,12 +87,20 @@ const Profile = (props) => {
 
             <h3>Your Classes</h3>
             <div id='class-list-container'>
-                <ClassList classes={data.classes} setTypeModal={setTypeModal} setIsModal={setIsModal} />
+                <ClassList 
+                    classes={clientItems.classes} 
+                    setTypeModal={setTypeModal} 
+                    setIsModal={setIsModal} 
+                />
             </div>
             
             <h3>Your Punchpasses</h3>
             <div id='punchpass-list-container'>
-                <PunchpassList punchpasses={data.punchpasses} setTypeModal={setTypeModal} setIsModal={setIsModal} />
+                <PunchpassList 
+                    punchpasses={clientItems.punchpasses} 
+                    setTypeModal={setTypeModal} 
+                    setIsModal={setIsModal} 
+                />
             </div>
 
         </div>

@@ -2,12 +2,12 @@
 // Can search by class time, date, duration, type, intensity level, location
 // Can click button on individual class to register
 // Clicking button renders confirmation modal
-import React, { useState, useEffect } from 'react';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import React, { useEffect } from 'react';
+// import axiosWithAuth from '../utils/axiosWithAuth';
 
 import SearchClass from './SearchClass';
 
-const initialValues = [
+const mockGetClientClassSearch = [
     {
         id: 1,
         name: 'Run fast',
@@ -36,16 +36,15 @@ const initialValues = [
 
 const SearchClasses = (props) => {
 
-    const { setIsModal, setTypeModal } = props;
-
-    const [classes, setClasses] = useState(initialValues);
+    const { setIsModal, setTypeModal, clientClassSearch, setClientClassSearch } = props;
 
     const getData = () => {
-        console.log('Search class data');
+        console.log('Inside SearchClasses getData');
+        setClientClassSearch(mockGetClientClassSearch);
         // axiosWithAuth()
         //     .get('/api/search-classes')
         //     .then(res => {
-        //         setClasses(res.data);
+        //         setClientClassSearch(res.data);
         //     })
         //     .catch(err => {
         //         console.log(err);
@@ -71,8 +70,14 @@ const SearchClasses = (props) => {
                     <th>Current Attendees</th>
                     <th>Max Attendees</th>
                 </tr>
-                {classes.map(c => (
-                    <SearchClass key={c.id} info={c} setClasses={setClasses} setIsModal={setIsModal} setTypeModal={setTypeModal} />
+                {clientClassSearch.map(el => (
+                    <SearchClass 
+                        key={el.id} 
+                        info={el} 
+                        setClientClassSearch={setClientClassSearch} 
+                        setIsModal={setIsModal} 
+                        setTypeModal={setTypeModal} 
+                    />
                 ))}
                 </tbody>
             </table>

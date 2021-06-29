@@ -1,10 +1,14 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const PrivateRoute = ({component:Component, isAuth, setIsModal, setTypeModal, ...rest}) => {
+const PrivateRoute = ({component:Component, ...rest}) => {
     return <Route {...rest} render={(props) => {
-        if (isAuth) {
-            return(<Component {...props} setIsModal={setIsModal} setTypeModal={setTypeModal} />)
+        if (rest.isAuth) {
+            return(
+                <Component 
+                    {...props}
+                    {...rest}
+                />)
         } else {
             return <Redirect to='/login' />
         }

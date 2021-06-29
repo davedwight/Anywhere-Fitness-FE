@@ -14,6 +14,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 const SearchClass = (props) => {
 
     const { setClasses, setIsModal, setTypeModal } = props;
+    
     const [cancelModal, setCancelModal] = useState(false);
     const [rescheduleModal, setRescheduleModal] = useState(false);
 
