@@ -6,7 +6,7 @@ import Class from './Class';
 
 const ClassList = (props) => {
 
-    const { classes, setIsModal, setModalInfo } = props;
+    const { classes, setIsModal, setModalInfo, clientItems, setClientItems } = props;
 
     return (
         <div className='container'>
@@ -29,6 +29,8 @@ const ClassList = (props) => {
                         info={el} 
                         setIsModal={setIsModal}
                         setModalInfo={setModalInfo}
+                        clientItems={clientItems}
+                        setClientItems={setClientItems}
                     />
                 ))}
                 </tbody>

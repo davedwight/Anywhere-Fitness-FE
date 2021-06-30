@@ -15,16 +15,18 @@ import RescheduleClass from './RescheduleClass';
 
 const Class = (props) => {
 
-    const { setIsModal, setModalInfo } = props;
-
-    // const [cancelModal, setCancelModal] = useState(false);
-    // const [rescheduleModal, setRescheduleModal] = useState(false);
+    const { setIsModal, setModalInfo, clientItems, setClientItems } = props;
 
     const handleRescheduleClick = () => {
         setIsModal(true);
         setModalInfo({
             type: 'select',
-            message: <RescheduleClass setIsModal={setIsModal} setModalInfo={setModalInfo} classInfo={props.info} />,
+            message: <RescheduleClass 
+                setIsModal={setIsModal} 
+                setModalInfo={setModalInfo} 
+                classInfo={props.info} 
+                clientItems={clientItems}
+                setClientItems={setClientItems} />,
             function: ''
         })
     }
