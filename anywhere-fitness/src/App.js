@@ -25,10 +25,6 @@ const initialClientItems = {
   punchpasses: []
 };
 
-const initialClientClassSearchValues = [];
-
-const initialClientPunchpassSearchValues = [];
-
 const initialModalInfo = {
   type: '',
   message: '',
@@ -42,12 +38,8 @@ const App = () => {
   const [modalInfo, setModalInfo] = useState(initialModalInfo)
   const [typeModal, setTypeModal] = useState('');
   const [clientItems, setClientItems] = useState(initialClientItems);
-  const [clientClassSearch, setClientClassSearch] = useState(initialClientClassSearchValues);
-  const [clientPunchpassSearch, setClientPunchpassSearch] = useState(initialClientPunchpassSearchValues);
-
-  const handleModalCancel = () => {
-    setIsModal(false);
-  }
+  const [clientClassSearch, setClientClassSearch] = useState([]);
+  const [clientPunchpassSearch, setClientPunchpassSearch] = useState([]);
 
   const handleClientClassDelete = (id) => {
       setTypeModal('success');
@@ -142,8 +134,8 @@ const App = () => {
         { 
           isModal ? 
           <Modal
+              setIsModal={setIsModal}
               modalInfo={modalInfo} 
-              handleModalCancel={handleModalCancel}
               // typeModal={typeModal} 
               // handleClientClassAdd={handleClientClassAdd}
               // handleClientClassDelete={handleClientClassDelete}

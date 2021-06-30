@@ -23,14 +23,14 @@ const Class = (props) => {
     const handleRescheduleClick = () => {
         setIsModal(true);
         setModalInfo({
-            type: 'confirm',
+            type: 'select',
             message: <RescheduleClass setIsModal={setIsModal} setModalInfo={setModalInfo} classInfo={props.info} />,
-            function: null
+            function: ''
         })
     }
 
     const handleDeleteClick = () => {
-        props.setIsModal(true);
+        setIsModal(true);
         props.setTypeModal('cancelClass')
     }
 

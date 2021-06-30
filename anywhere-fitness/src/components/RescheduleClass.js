@@ -1,7 +1,10 @@
 // Modal that displays other classes with the same type and location
 // If there are no other classes with same type and location, display: "Sorry there are no other times this class is available."
 // Makes put request to class endpoint
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+
+import axiosWithAuth from './../utils/axiosWithAuth';
 
 const mockData = [
     {
@@ -33,14 +36,22 @@ const mockData = [
 const ClassOption = (props) => {
 
     const { name, time, date, duration, type, intensity, location, current_attendees, class_size } = props.newClassInfo;
+    const { classInfo, setIsModal, setModalInfo } = props;
 
     const handleRescheduleSubmit = () => {
         //delete the first reservation and add the new reservation to the client class list
+        console.log('submitted reschedule class');
     }
 
     const handleClassClick = () => {
         //show a new confirmation modal -- Are you sure you want to reschedule? This will remove you from the class in which you are currently registered and register you for this new class.
         console.log('clicked reschedule class');
+        setIsModal(true);
+        setModalInfo({
+            type: 'confirm',
+            message: 'Are you sure you want to reschedule? This will remove you from the class in which you are currently signed up and sign you up for this new class.',
+            function: handleRescheduleSubmit()
+        })
     }
 
     return (
@@ -66,6 +77,14 @@ const RescheduleClass = (props) => {
 
     const getData = () => {
         setClassOptions(mockData);
+        // axiosWithAuth()
+        //     .get('/api/search-classes')
+        //     .then(res => {
+        //         setClassOptions(res.data);
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     })
     }
 
     useEffect(() => {
