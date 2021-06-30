@@ -8,7 +8,7 @@ const Modal = (props) => {
         return (
             <div className='modal-container' onClick={props.handleModalCancel}>
                 <div className='modal'>
-                    <p>{props.modalInfo.message ? props.modalInfo.message : 'Success'}</p>
+                    <div>{props.modalInfo.message ? props.modalInfo.message : 'Success'}</div>
                     <button onClick={props.handleModalCancel}>Ok</button>
                 </div>
             </div>
@@ -17,7 +17,7 @@ const Modal = (props) => {
         return (
             <div className='modal-container' onClick={props.handleModalCancel}>
                 <div className='modal'>
-                    <p>{props.modalInfo.message ? props.modalInfo.message : 'Are you sure?'}</p>
+                    <div>{props.modalInfo.message ? props.modalInfo.message : 'Are you sure?'}</div>
                     <button onClick={props.handleModalCancel}>Nevermind</button>
                     <button onClick={props.modalInfo.function}>Confirm</button>
                 </div>
@@ -27,7 +27,7 @@ const Modal = (props) => {
         return (
             <div className='modal-container'>
                 <div className='modal'>
-                    <p>There was an error</p>
+                    <div>There was an error</div>
                     <button onClick={props.handleModalCancel}>Ok</button>
                 </div>
             </div>
@@ -42,7 +42,7 @@ const Modal = (props) => {
     //     return (
     //         <div className='modal-container'>
     //             <div className='modal'>
-    //                 <p>Are you sure you want to cancel this class? This can't be undone.</p>
+    //                 <div>Are you sure you want to cancel this class? This can't be undone.</div>
     //                 <button onClick={props.handleModalCancel}>Nevermind</button>
     //                 <button onClick={props.handleClassCancel}>Confirm</button>
     //             </div>
@@ -52,7 +52,7 @@ const Modal = (props) => {
     //     return (
     //         <div className='modal-container'>
     //             <div className='modal'>
-    //                 <p>Please select a class from the options below.</p>
+    //                 <div>Please select a class from the options below.</div>
     //                 <button onClick={props.handleModalCancel}>Nevermind</button>
     //                 <button onClick={props.handleClassReschedule}>Confirm</button>
     //             </div>
@@ -62,7 +62,7 @@ const Modal = (props) => {
     //     return (
     //         <div className='modal-container'>
     //             <div className='modal'>
-    //                 <p>Are you sure you want to remove this punchpass? This can't be undone and you will lose any remaining punches on this pass.</p>
+    //                 <div>Are you sure you want to remove this punchpass? This can't be undone and you will lose any remaining punches on this pass.</div>
     //                 <button onClick={props.handleModalCancel}>Nevermind</button>
     //                 <button onClick={props.handlePunchpassCancel}>Confirm</button>
     //             </div>
@@ -72,7 +72,7 @@ const Modal = (props) => {
     //     return (
     //         <div className='modal-container'>
     //             <div className='modal'>
-    //                 <p>Success</p>
+    //                 <div>Success</div>
     //                 <button onClick={props.handleModalCancel}>Ok</button>
     //             </div>
     //         </div>
@@ -81,7 +81,7 @@ const Modal = (props) => {
     //     return (
     //         <div className='modal-container'>
     //             <div className='modal'>
-    //                 <p>You've successfully signed up for this class. You can reschedule or remove this class in your profile.</p>
+    //                 <div>You've successfully signed up for this class. You can reschedule or remove this class in your profile.</div>
     //                 <button onClick={props.handleModalCancel}>Ok</button>
     //             </div>
     //         </div>
@@ -90,7 +90,7 @@ const Modal = (props) => {
     //     return (
     //         <div className='modal-container'>
     //             <div className='modal'>
-    //                 <p>There was an error</p>
+    //                 <div>There was an error</div>
     //                 <button onClick={props.handleModalCancel}>Ok</button>
     //             </div>
     //         </div>

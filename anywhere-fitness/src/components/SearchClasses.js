@@ -36,7 +36,7 @@ const mockGetClientClassSearch = [
 
 const SearchClasses = (props) => {
 
-    const { setIsModal, setModalInfo, setTypeModal, clientClassSearch, setClientClassSearch, clientItems, setClientItems } = props;
+    const { setIsModal, setModalInfo, clientClassSearch, setClientClassSearch, clientItems, setClientItems } = props;
 
     const getData = () => {
         console.log('Inside SearchClasses getData');
@@ -76,7 +76,6 @@ const SearchClasses = (props) => {
                         info={el} 
                         setClientClassSearch={setClientClassSearch} 
                         setIsModal={setIsModal} 
-                        setTypeModal={setTypeModal} 
                         setModalInfo={setModalInfo}
                         clientItems={clientItems}
                         setClientItems={setClientItems}

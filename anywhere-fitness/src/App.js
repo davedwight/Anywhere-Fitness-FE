@@ -157,7 +157,7 @@ const App = () => {
           <PrivateRoute
             isAuth={isAuth.isAuth}
             setIsModal={setIsModal}
-            setTypeModal={setTypeModal}
+            setModalInfo={setModalInfo}
             clientItems={clientItems} 
             setClientItems={setClientItems}
             exact path='/profile'

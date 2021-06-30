@@ -61,7 +61,7 @@ const mockGetClientItems = {
 
 const Profile = (props) => {
 
-    const { setIsModal, setTypeModal, clientItems, setClientItems } = props;
+    const { setIsModal, setModalInfo, clientItems, setClientItems } = props;
     
     const getData = () => {
         console.log("Inside Profile getData");
@@ -89,8 +89,8 @@ const Profile = (props) => {
             <div id='class-list-container'>
                 <ClassList 
                     classes={clientItems.classes} 
-                    setTypeModal={setTypeModal} 
-                    setIsModal={setIsModal} 
+                    setIsModal={setIsModal}
+                    setModalInfo={setModalInfo}
                 />
             </div>
             
@@ -98,7 +98,6 @@ const Profile = (props) => {
             <div id='punchpass-list-container'>
                 <PunchpassList 
                     punchpasses={clientItems.punchpasses} 
-                    setTypeModal={setTypeModal} 
                     setIsModal={setIsModal} 
                 />
             </div>

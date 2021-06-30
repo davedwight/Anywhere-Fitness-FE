@@ -14,24 +14,31 @@ import React from 'react';
 const SearchClass = (props) => {
 
     const { setIsModal, info, clientItems, setClientItems, setModalInfo} = props;
-
-    const modalMessage = 'You have successfully signed up for this class. You can reschedule or remove this class in your profile.';
     
     const handleAddClick = () => {
-        setIsModal(true);
-        setModalInfo({
-            type: 'success',
-            message: modalMessage, 
-            function: handleAddSubmit()
-        });
+        if (clientItems.classes.some(el => el.id === info.id)) {
+            setIsModal(true);
+            setModalInfo({
+                type: 'success',
+                message: 'You are already signed up for this class.', 
+                function: null
+            });
+        } else {
+            setIsModal(true);
+            setModalInfo({
+                type: 'success',
+                message: 'You have successfully signed up for this class. You can reschedule or remove this class in your profile.', 
+                function: handleAddSubmit()
+            });
+        }
     }
 
     const handleAddSubmit = () => {
         console.log("Inside handleAddSubmit in SearchClass");
-        setClientItems({
-            classes: [...clientItems.classes, info],
-            punchpasses: [...clientItems.punchpasses]
-        });
+            setClientItems({
+                classes: [...clientItems.classes, info],
+                punchpasses: [...clientItems.punchpasses]
+            });
         // axiosWithAuth()
         //     .post('/api/add-class', info)
         //     .then(res => {
@@ -58,7 +65,7 @@ const SearchClass = (props) => {
             <td>{location}</td>
             <td>{current_attendees}</td>
             <td>{class_size}</td>
-            <td><button onClick={handleAddClick}>Add Class</button></td>
+            <td><button onClick={handleAddClick}>Sign Up</button></td>
         </tr>
     )
 }
