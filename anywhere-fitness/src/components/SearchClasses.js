@@ -9,7 +9,7 @@ import SearchClass from './SearchClass';
 
 const mockGetClientClassSearch = [
     {
-        id: 1,
+        id: 3,
         name: 'Run fast',
         time: '2pm',
         date: 'June 28',
@@ -21,7 +21,7 @@ const mockGetClientClassSearch = [
         class_size: 20
     },
     {
-        id: 2,
+        id: 4,
         name: 'Run fast',
         time: '4pm',
         date: 'June 28',
@@ -36,7 +36,7 @@ const mockGetClientClassSearch = [
 
 const SearchClasses = (props) => {
 
-    const { setIsModal, setTypeModal, clientClassSearch, setClientClassSearch } = props;
+    const { setIsModal, setModalInfo, setTypeModal, clientClassSearch, setClientClassSearch, clientItems, setClientItems } = props;
 
     const getData = () => {
         console.log('Inside SearchClasses getData');
@@ -77,6 +77,9 @@ const SearchClasses = (props) => {
                         setClientClassSearch={setClientClassSearch} 
                         setIsModal={setIsModal} 
                         setTypeModal={setTypeModal} 
+                        setModalInfo={setModalInfo}
+                        clientItems={clientItems}
+                        setClientItems={setClientItems}
                     />
                 ))}
                 </tbody>

@@ -7,26 +7,39 @@
 // Displays name, time, date, duration, type, intensity, location, current registered attendees, max class size
 // Has edit button that renders EditClass
 // Has delete button
-import React, { useState } from 'react';
+import React from 'react';
 
-import axiosWithAuth from '../utils/axiosWithAuth';
+// import axiosWithAuth from '../utils/axiosWithAuth';
 
 const SearchClass = (props) => {
 
-    const { setClasses, setIsModal, setTypeModal } = props;
+    const { setIsModal, info, clientItems, setClientItems, setModalInfo} = props;
+
+    const modalMessage = 'You have successfully signed up for this class. You can reschedule or remove this class in your profile.';
     
-    const [cancelModal, setCancelModal] = useState(false);
-    const [rescheduleModal, setRescheduleModal] = useState(false);
-
-    const handleAdd = () => {
+    const handleAddClick = () => {
         setIsModal(true);
-        setTypeModal('signUpClass');
+        setModalInfo({
+            type: 'success',
+            message: modalMessage, 
+            function: handleAddSubmit()
+        });
+    }
 
+    const handleAddSubmit = () => {
+        console.log("Inside handleAddSubmit in SearchClass");
+        setClientItems({
+            classes: [...clientItems.classes, info],
+            punchpasses: [...clientItems.punchpasses]
+        });
         // axiosWithAuth()
-        //     .post('/api/add-class', props.info)
+        //     .post('/api/add-class', info)
         //     .then(res => {
         //         //set class state in my classes to reflect backend change
-        //          setClasses(res.data);
+        //         setClientItems({
+        //             classes: [...clientItems.classes, res.data],
+        //             punchpasses: [...clientItems.punchpasses]
+        //         });
         //     })
         //     .catch(err => {
         //         console.log(err)
@@ -45,7 +58,7 @@ const SearchClass = (props) => {
             <td>{location}</td>
             <td>{current_attendees}</td>
             <td>{class_size}</td>
-            <td><button onClick={handleAdd}>Add Class</button></td>
+            <td><button onClick={handleAddClick}>Add Class</button></td>
         </tr>
     )
 }

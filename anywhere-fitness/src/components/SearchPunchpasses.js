@@ -31,8 +31,6 @@ const SearchPunchpasses = (props) => {
 
     const { setIsModal, setTypeModal, clientPunchpassSearch, setClientPunchpassSearch } = props;
 
-    // const [punchpasses, setPunchpasses] = useState(initialValues);
-
     const getData = () => {
         console.log('Inside SearchPunchpasses getData');
         setClientPunchpassSearch(mockGetClientPunchpassSearch);

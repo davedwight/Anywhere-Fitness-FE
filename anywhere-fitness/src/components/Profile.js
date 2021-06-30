@@ -65,7 +65,7 @@ const Profile = (props) => {
     
     const getData = () => {
         console.log("Inside Profile getData");
-        setClientItems(mockGetClientItems);
+        clientItems.classes.length === 0 && clientItems.punchpasses.length === 0 ? setClientItems(mockGetClientItems) : setClientItems(clientItems);
         // axiosWithAuth()
         //     .get('/api/client-items')
         //     .then(res => {

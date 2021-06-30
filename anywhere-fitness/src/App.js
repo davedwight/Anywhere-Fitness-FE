@@ -29,10 +29,17 @@ const initialClientClassSearchValues = [];
 
 const initialClientPunchpassSearchValues = [];
 
+const initialModalInfo = {
+  type: '',
+  message: '',
+  function: ''
+}
+
 const App = () => {
 
   const [isAuth, setIsAuth] = useState(initialAuthValue);
   const [isModal, setIsModal] = useState(false);
+  const [modalInfo, setModalInfo] = useState(initialModalInfo)
   const [typeModal, setTypeModal] = useState('');
   const [clientItems, setClientItems] = useState(initialClientItems);
   const [clientClassSearch, setClientClassSearch] = useState(initialClientClassSearchValues);
@@ -40,27 +47,6 @@ const App = () => {
 
   const handleModalCancel = () => {
     setIsModal(false);
-    setTypeModal('');
-  }
-
-  const handleClientClassAdd = (data) => {
-    setTypeModal('success');
-    setClientItems({
-      classes: [...clientItems.classes, data],
-      punchpasses: [...clientItems.punchpasses]
-    });
-    // axiosWithAuth()
-    //   .post('/api/add-class', data)
-    //   .then(res => {
-    //       //set class state in my classes to reflect backend change
-    //         setClientItems({
-    //           classes: [...clientItems.classes, res.data],
-    //           punchpasses: [...clientItems.punchpasses]
-    //         });
-    //   })
-    //   .catch(err => {
-    //       console.log(err)
-    //   })
   }
 
   const handleClientClassDelete = (id) => {
@@ -155,14 +141,15 @@ const App = () => {
 
         { 
           isModal ? 
-          <Modal 
-              typeModal={typeModal} 
+          <Modal
+              modalInfo={modalInfo} 
               handleModalCancel={handleModalCancel}
-              handleClientClassAdd={handleClientClassAdd}
-              handleClientClassDelete={handleClientClassDelete}
-              handleClientClassReschedule={handleClientClassReschedule}
-              handleClientPunchpassAdd={handleClientPunchpassAdd}
-              handleClientPunchpassDelete={handleClientPunchpassDelete}
+              // typeModal={typeModal} 
+              // handleClientClassAdd={handleClientClassAdd}
+              // handleClientClassDelete={handleClientClassDelete}
+              // handleClientClassReschedule={handleClientClassReschedule}
+              // handleClientPunchpassAdd={handleClientPunchpassAdd}
+              // handleClientPunchpassDelete={handleClientPunchpassDelete}
           /> 
           : null
         }
@@ -186,9 +173,12 @@ const App = () => {
           <Route path='/search-classes'>
             <SearchClasses 
               setIsModal={setIsModal}
+              setModalInfo={setModalInfo}
               setTypeModal={setTypeModal}
               clientClassSearch={clientClassSearch}
               setClientClassSearch={setClientClassSearch}
+              clientItems={clientItems}
+              setClientItems={setClientItems}
             />
           </Route>
 
