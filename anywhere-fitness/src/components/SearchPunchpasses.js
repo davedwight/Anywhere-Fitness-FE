@@ -7,12 +7,12 @@
 // Can search by class time, date, duration, type, intensity level, location
 // Can click button on individual class to register
 // Clicking button renders confirmation modal
-import React, { useState, useEffect } from 'react';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import React, { useEffect } from 'react';
+// import axiosWithAuth from '../utils/axiosWithAuth';
 
-import Punchpass from './Punchpass';
+import SearchPunchpass from './SearchPunchpass';
 
-const initialValues = [
+const mockGetClientPunchpassSearch = [
     {
         id: 1,
         type: 'cardio', 
@@ -29,14 +29,15 @@ const initialValues = [
 
 const SearchPunchpasses = (props) => {
 
-    const [punchpasses, setPunchpasses] = useState(initialValues);
+    const { setIsModal, setTypeModal, clientPunchpassSearch, setClientPunchpassSearch } = props;
 
     const getData = () => {
-        console.log('Search punchpass data');
+        console.log('Inside SearchPunchpasses getData');
+        setClientPunchpassSearch(mockGetClientPunchpassSearch);
         // axiosWithAuth()
         //     .get('/api/search-punchpasses')
         //     .then(res => {
-        //         setPunchpasses(res.data);
+        //         setClientPunchpassSearch(res.data);
         //     })
         //     .catch(err => {
         //         console.log(err);
@@ -56,8 +57,13 @@ const SearchPunchpasses = (props) => {
                     <th>Used punches</th>
                     <th>Total punches</th>
                 </tr>
-                {punchpasses.map(p => (
-                    <Punchpass key={p.id} info={p} />
+                {clientPunchpassSearch.map(el => (
+                    <SearchPunchpass 
+                        key={el.id} 
+                        info={el} 
+                        setIsModal={setIsModal} 
+                        setTypeModal={setTypeModal} 
+                    />
                 ))}
                 </tbody>
             </table>

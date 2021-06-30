@@ -6,7 +6,7 @@ import Class from './Class';
 
 const ClassList = (props) => {
 
-    const { classes, setTypeModal, setIsModal } = props;
+    const { classes, setIsModal, setModalInfo } = props;
 
     return (
         <div className='container'>
@@ -23,8 +23,13 @@ const ClassList = (props) => {
                     <th>Current Attendees</th>
                     <th>Max Attendees</th>
                 </tr>
-                {classes.map(c => (
-                    <Class key={c.id} info={c} setTypeModal={setTypeModal} setIsModal={setIsModal}/>
+                {classes.map(el => (
+                    <Class 
+                        key={el.id} 
+                        info={el} 
+                        setIsModal={setIsModal}
+                        setModalInfo={setModalInfo}
+                    />
                 ))}
                 </tbody>
             </table>

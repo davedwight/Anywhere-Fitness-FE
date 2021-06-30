@@ -7,22 +7,30 @@
 // Displays name, time, date, duration, type, intensity, location, current registered attendees, max class size
 // Has edit button that renders EditClass
 // Has delete button
-import React, { useState } from 'react';
+import React from 'react';
 
-import axiosWithAuth from '../utils/axiosWithAuth';
+import RescheduleClass from './RescheduleClass';
+
+// import axiosWithAuth from '../utils/axiosWithAuth';
 
 const Class = (props) => {
 
-    const [cancelModal, setCancelModal] = useState(false);
-    const [rescheduleModal, setRescheduleModal] = useState(false);
+    const { setIsModal, setModalInfo } = props;
 
-    const handleReschedule = () => {
-        props.setIsModal(true);
-        props.setTypeModal('rescheduleClass')
+    // const [cancelModal, setCancelModal] = useState(false);
+    // const [rescheduleModal, setRescheduleModal] = useState(false);
+
+    const handleRescheduleClick = () => {
+        setIsModal(true);
+        setModalInfo({
+            type: 'select',
+            message: <RescheduleClass setIsModal={setIsModal} setModalInfo={setModalInfo} classInfo={props.info} />,
+            function: ''
+        })
     }
 
-    const handleCancel = () => {
-        props.setIsModal(true);
+    const handleDeleteClick = () => {
+        setIsModal(true);
         props.setTypeModal('cancelClass')
     }
 
@@ -38,8 +46,8 @@ const Class = (props) => {
             <td>{location}</td>
             <td>{current_attendees}</td>
             <td>{class_size}</td>
-            <td><button onClick={handleReschedule}>Reschedule</button></td>
-            <td><button onClick={handleCancel}>Cancel</button></td>
+            <td><button onClick={handleRescheduleClick}>Reschedule</button></td>
+            <td><button onClick={handleDeleteClick}>Delete</button></td>
         </tr>
     )
 }

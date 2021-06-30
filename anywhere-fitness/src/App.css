@@ -19,3 +19,8 @@ a {
   align-items: center;
   width: 100%;
 }
+
+#reschedule-class:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}

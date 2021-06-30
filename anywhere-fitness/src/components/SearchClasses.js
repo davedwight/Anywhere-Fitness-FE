@@ -2,14 +2,14 @@
 // Can search by class time, date, duration, type, intensity level, location
 // Can click button on individual class to register
 // Clicking button renders confirmation modal
-import React, { useState, useEffect } from 'react';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import React, { useEffect } from 'react';
+// import axiosWithAuth from '../utils/axiosWithAuth';
 
 import SearchClass from './SearchClass';
 
-const initialValues = [
+const mockGetClientClassSearch = [
     {
-        id: 1,
+        id: 3,
         name: 'Run fast',
         time: '2pm',
         date: 'June 28',
@@ -21,7 +21,7 @@ const initialValues = [
         class_size: 20
     },
     {
-        id: 2,
+        id: 4,
         name: 'Run fast',
         time: '4pm',
         date: 'June 28',
@@ -36,14 +36,15 @@ const initialValues = [
 
 const SearchClasses = (props) => {
 
-    const [classes, setClasses] = useState(initialValues);
+    const { setIsModal, setModalInfo, clientClassSearch, setClientClassSearch, clientItems, setClientItems } = props;
 
     const getData = () => {
-        console.log('Search class data');
+        console.log('Inside SearchClasses getData');
+        setClientClassSearch(mockGetClientClassSearch);
         // axiosWithAuth()
         //     .get('/api/search-classes')
         //     .then(res => {
-        //         setClasses(res.data);
+        //         setClientClassSearch(res.data);
         //     })
         //     .catch(err => {
         //         console.log(err);
@@ -69,8 +70,16 @@ const SearchClasses = (props) => {
                     <th>Current Attendees</th>
                     <th>Max Attendees</th>
                 </tr>
-                {classes.map(c => (
-                    <SearchClass key={c.id} info={c} setClasses={setClasses} />
+                {clientClassSearch.map(el => (
+                    <SearchClass 
+                        key={el.id} 
+                        info={el} 
+                        setClientClassSearch={setClientClassSearch} 
+                        setIsModal={setIsModal} 
+                        setModalInfo={setModalInfo}
+                        clientItems={clientItems}
+                        setClientItems={setClientItems}
+                    />
                 ))}
                 </tbody>
             </table>
