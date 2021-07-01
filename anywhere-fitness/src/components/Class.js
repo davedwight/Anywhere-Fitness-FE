@@ -27,7 +27,7 @@ const Class = (props) => {
                 classInfo={props.info} 
                 clientItems={clientItems}
                 setClientItems={setClientItems} />,
-            function: ''
+            function: null
         })
     }
 

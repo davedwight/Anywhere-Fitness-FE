@@ -92,6 +92,21 @@ const RescheduleClass = (props) => {
     const [classOptions, setClassOptions] = useState([]);
 
     const getData = () => {
+        // filter out classes in mockData for which the client is already signed up
+        const filteredClasses = mockData.filter(el => !clientItems.classes.map(item => item.id).includes(el.id));
+        // filter out classes where the type of the selected class matches the type in mockData
+        const filteredClassesMatchType = filteredClasses.filter(el => el.type === classInfo.type);
+        const noResults = () => {
+            setIsModal(true);
+            setModalInfo({
+                type: 'success',
+                message: 'There are no other available classes of this type.',
+                function: null
+            })
+        }
+        filteredClassesMatchType.length > 0 ? setClassOptions(filteredClassesMatchType) : noResults();
+
+
         setClassOptions(mockData);
         // axiosWithAuth()
         //     .get('/api/search-classes')
