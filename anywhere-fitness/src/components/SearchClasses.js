@@ -10,15 +10,15 @@ import SearchClass from './SearchClass';
 const mockGetClientClassSearch = [
     {
         id: 3,
-        name: 'Run fast',
+        name: 'Run extra fast',
         time: '2pm',
-        date: 'June 28',
-        duration: '2 hrs',
+        date: 'June 25',
+        duration: '1 hr',
         type: 'cardio',
-        intensity: 'medium',
-        location: 'football stadium',
-        current_attendees: 14,
-        class_size: 20
+        intensity: 'hard',
+        location: 'baseball stadium',
+        current_attendees: 5,
+        class_size: 25
     },
     {
         id: 4,
@@ -40,7 +40,18 @@ const SearchClasses = (props) => {
 
     const getData = () => {
         console.log('Inside SearchClasses getData');
-        setClientClassSearch(mockGetClientClassSearch);
+        //filtering out classes for which the client is currently signed up
+        const filteredClasses = mockGetClientClassSearch.filter(el => !clientItems.classes.map(el => el.id).includes(el.id));
+        const noResults = () => {
+            setIsModal(true);
+            setModalInfo({
+                type: 'success',
+                message: 'There are no other classes available.',
+                function: null
+            })
+        }
+        filteredClasses.length > 0 ? setClientClassSearch(filteredClasses) : noResults();
+
         // axiosWithAuth()
         //     .get('/api/search-classes')
         //     .then(res => {

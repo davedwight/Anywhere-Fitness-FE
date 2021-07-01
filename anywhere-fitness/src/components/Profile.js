@@ -78,7 +78,7 @@ const Profile = (props) => {
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [clientItems]);
 
     return ( 
         <div className='container'>
@@ -91,6 +91,8 @@ const Profile = (props) => {
                     classes={clientItems.classes} 
                     setIsModal={setIsModal}
                     setModalInfo={setModalInfo}
+                    clientItems={clientItems}
+                    setClientItems={setClientItems}
                 />
             </div>
             

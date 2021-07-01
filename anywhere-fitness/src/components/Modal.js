@@ -7,13 +7,13 @@ const Modal = (props) => {
     const { modalInfo, setIsModal } = props;
 
     const handleModalCancel = (e) => {
-        // setIsModal(false);
+        setIsModal(false);
         // e.stopPropagation();
     };
 
     if (modalInfo.type === 'success') {
         return (
-            <div className='modal-container' onClick={handleModalCancel}>
+            <div className='modal-container'>
                 <div className='modal' >
                     <div>{modalInfo.message ? modalInfo.message : 'Success'}</div>
                     <button onClick={handleModalCancel}>Ok</button>
@@ -22,7 +22,7 @@ const Modal = (props) => {
         ) 
     } else if (modalInfo.type === 'confirm') {
         return (
-            <div className='modal-container' onClickCapture={handleModalCancel}>
+            <div className='modal-container'>
                 <div className='modal'>
                     <div>{modalInfo.message ? modalInfo.message : 'Are you sure?'}</div>
                     <button onClick={handleModalCancel}>Nevermind</button>
@@ -32,9 +32,10 @@ const Modal = (props) => {
         ) 
     } else if (modalInfo.type === 'select') {
         return (
-            <div className='modal-container' onClickCapture={handleModalCancel}>
+            <div className='modal-container'>
                 <div className='modal'>
                     <div>{modalInfo.message ? modalInfo.message : 'There was an error'}</div>
+                    <button onClick={handleModalCancel}>Cancel</button>
                 </div>
             </div>
         ) 
