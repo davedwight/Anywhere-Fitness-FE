@@ -37,8 +37,6 @@ const ClassOption = (props) => {
     const { name, time, date, duration, type, intensity, location, current_attendees, class_size } = props.newClassInfo;
     const { classInfo, setIsModal, setModalInfo, clientItems, setClientItems } = props;
 
-    // [...clientItems.classes.filter(el => el.id !== classInfo.id), props.newClassInfo]
-
     const handleRescheduleSubmit = () => {
         //delete the first reservation and add the new reservation to the client class list
         setIsModal(false);
@@ -61,7 +59,6 @@ const ClassOption = (props) => {
     }
 
     const handleClassClick = () => {
-        //show a new confirmation modal -- Are you sure you want to reschedule? This will remove you from the class in which you are currently registered and register you for this new class.
         setIsModal(true);
         setModalInfo({
             type: 'confirm',
@@ -106,8 +103,6 @@ const RescheduleClass = (props) => {
         }
         filteredClassesMatchType.length > 0 ? setClassOptions(filteredClassesMatchType) : noResults();
 
-
-        setClassOptions(mockData);
         // axiosWithAuth()
         //     .get('/api/search-classes')
         //     .then(res => {

@@ -33,7 +33,31 @@ const Class = (props) => {
 
     const handleDeleteClick = () => {
         setIsModal(true);
-        props.setTypeModal('cancelClass')
+        setModalInfo({
+            type: 'confirm',
+            message: 'Are you sure you want to cancel this reservation?',
+            function: handleDeleteSubmit
+        })
+    }
+
+    const handleDeleteSubmit = () => {
+        setIsModal(false);
+        setClientItems({
+            classes: [...clientItems.classes.filter(el => el.id !== props.info.id)],
+            punchpasses: [...clientItems.punchpasses]
+        })
+        // axiosWithAuth()
+        //     .delete(`/api/delete/client-class/${props.info.id}`)
+        //     .then(res => {
+        //         setIsModal(false);
+        //         setClientItems({
+        //             classes: [...clientItems.classes.filter(el => el.id !== props.info.id)],
+        //             punchpasses: [...clientItems.punchpasses]
+        //         })
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     })
     }
 
     const { name, time, date, duration, type, intensity, location, current_attendees, class_size } = props.info;
@@ -49,7 +73,7 @@ const Class = (props) => {
             <td>{current_attendees}</td>
             <td>{class_size}</td>
             <td><button onClick={handleRescheduleClick}>Reschedule</button></td>
-            <td><button onClick={handleDeleteClick}>Delete</button></td>
+            <td><button onClick={handleDeleteClick}>Cancel Reservation</button></td>
         </tr>
     )
 }
