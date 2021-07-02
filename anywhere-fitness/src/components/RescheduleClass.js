@@ -41,7 +41,7 @@ const ClassOption = (props) => {
         //delete the first reservation and add the new reservation to the client class list
         setIsModal(false);
         setClientItems({
-            classes: [...clientItems.classes.filter(el => el.id !== classInfo.id), props.newClassInfo],
+            classes: [...clientItems.classes.filter(el => el.id !== classInfo.id), {...props.newClassInfo, current_attendees: props.newClassInfo.current_attendees + 1}],
             punchpasses: [...clientItems.punchpasses]
         })
         // axiosWithAuth()
