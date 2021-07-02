@@ -15,9 +15,9 @@ const SearchClass = (props) => {
 
     const { setIsModal, info, clientItems, setClientItems, setModalInfo} = props;
 
-    const handleAddClick = () => {
+    const punchpassMatch = clientItems.punchpasses.filter(el => el.type === info.type)[0];
 
-        const punchpassMatch = clientItems.punchpasses.filter(el => el.type === info.type)[0];
+    const handleAddClick = () => {
 
         if (clientItems.classes.some(el => el.id === info.id)) {
             setIsModal(true);
@@ -27,15 +27,15 @@ const SearchClass = (props) => {
                 function: null
             });
         // the client has a punchpass of the same type with available punches
-        } else if (clientItems.punchpasses.some(el => el.type === info.type) && punchpassMatch.punches_available > punchpassMatch.punches_used) {
+        } else if (clientItems.punchpasses.some(el => el.type === info.type) && punchpassMatch.total_punches > punchpassMatch.punches_used) {
             setIsModal(true);
             setModalInfo({
                 type: 'confirm',
-                message: `This will use a punch on your ${punchpassMatch.type} punchpass. You will have ${(punchpassMatch.punches_available - punchpassMatch.punches_used) - 1} punches remaining.`, 
+                message: `This will use a punch on your ${punchpassMatch.type} punchpass. You will have ${(punchpassMatch.total_punches - punchpassMatch.punches_used) - 1} punches remaining.`, 
                 function: handleAddSubmit
             });
         // the client has a punchpass of the same type with no available punches
-        } else if (clientItems.punchpasses.some(el => el.type === info.type) && punchpassMatch.punches_available === punchpassMatch.punches_used) {
+        } else if (clientItems.punchpasses.some(el => el.type === info.type) && punchpassMatch.total_punches === punchpassMatch.punches_used) {
             setIsModal(true);
             setModalInfo({
                 type: 'success',
@@ -61,10 +61,6 @@ const SearchClass = (props) => {
     }
 
     const handleAddSubmit = () => {
-        const punchpassMatch = clientItems.punchpasses.filter(el => el.type === info.type)[0];
-        console.log('client items: ', clientItems);
-        console.log('punchpassMatch: ', punchpassMatch);
-        console.log("Inside handleAddSubmit in SearchClass");
         setIsModal(false);
         setClientItems({
             classes: [...clientItems.classes, info],

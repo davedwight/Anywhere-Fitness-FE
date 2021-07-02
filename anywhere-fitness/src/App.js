@@ -40,7 +40,7 @@ const initialClientItems = {
           time: '3pm', 
           date: 'June 30',
           duration: '30 mins', 
-          type: 'Cardio', 
+          type: 'cardio', 
           intensity: 2, 
           location: '452 Broad St', 
           current_attendees: 22, 
@@ -52,13 +52,13 @@ const initialClientItems = {
           id: 1,
           type: 'boxing', 
           punches_used: 5,
-          punches_available: 10
+          total_punches: 10
       },
       {
           id: 2,
           type: 'HIIT', 
           punches_used: 7,
-          punches_available: 15
+          total_punches: 15
       }
   ]
 };

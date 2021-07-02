@@ -13,7 +13,7 @@ import React from 'react';
 const SearchPunchpass = (props) => {
 
     const { setIsModal, info, clientItems, setClientItems, setModalInfo} = props;
-    const { type, punches_available, price } = props.info;
+    const { type, total_punches, price } = props.info;
 
     const handleAddClick = () => {
         if (clientItems.punchpasses.some(el => el.type === info.type)) {
@@ -51,7 +51,7 @@ const SearchPunchpass = (props) => {
                     id: info.id,
                     type: type,
                     punches_used: 0,
-                    punches_available: punches_available
+                    total_punches: total_punches
                 }]
             });
         // axiosWithAuth()
@@ -64,7 +64,7 @@ const SearchPunchpass = (props) => {
         //                 id: info.id,
         //                 type: type,
         //                 punches_used: 0,
-        //                 punches_available: price
+        //                 total_punches: price
         //             }]
         //         });
         //     })
@@ -76,7 +76,7 @@ const SearchPunchpass = (props) => {
     return (
         <tr className='table-data-row' id='punchpass'>
             <td>{type}</td>
-            <td>{punches_available}</td>
+            <td>{total_punches}</td>
             <td>{price}</td>
             <td><button onClick={handleAddClick}>Buy</button></td>
         </tr>

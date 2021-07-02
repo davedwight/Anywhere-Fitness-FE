@@ -13,7 +13,7 @@ import React from 'react';
 const Punchpass = (props) => {
 
     const { setIsModal, setModalInfo, clientItems, setClientItems } = props;
-    const { type, punches_used, punches_available } = props.info;
+    const { type, punches_used, total_punches } = props.info;
 
     const handleDeleteClick = () => {
         setIsModal(true);
@@ -48,8 +48,8 @@ const Punchpass = (props) => {
         <tr className='table-data-row' id='punchpass'>
             <td>{type}</td>
             <td>{punches_used}</td>
-            <td>{punches_available}</td>
-            <td>{punches_available - punches_used}</td>
+            <td>{total_punches}</td>
+            <td>{total_punches - punches_used}</td>
             <td><button onClick={handleDeleteClick}>Remove pass</button></td>
         </tr>
     )
