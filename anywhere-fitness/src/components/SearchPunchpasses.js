@@ -16,13 +16,13 @@ const mockGetClientPunchpassSearch = [
     {
         id: 3,
         type: 'cardio', 
-        punches_available: 10,
+        total_punches: 10,
         price: 150
     },
     {
         id: 4,
         type: 'HIIT', 
-        punches_available: 10,
+        total_punches: 10,
         price: 200
     }
 ]

@@ -22,11 +22,11 @@ const mockGetClientClassSearch = [
     },
     {
         id: 4,
-        name: 'Run fast',
+        name: 'Lift fast',
         time: '4pm',
         date: 'June 28',
         duration: '2 hrs',
-        type: 'cardio',
+        type: 'HIIT',
         intensity: 'medium',
         location: 'football stadium',
         current_attendees: 14,
