@@ -19,7 +19,7 @@ const Punchpass = (props) => {
         setIsModal(true);
         setModalInfo({
             type: 'confirm',
-            message: 'Are you sure you want to remove this punchpass? Any remaining punches will be lost.',
+            message: 'Are you sure you want to delete this punchpass? Any remaining punches will be lost.',
             function: handleDeleteSubmit
         })
     }

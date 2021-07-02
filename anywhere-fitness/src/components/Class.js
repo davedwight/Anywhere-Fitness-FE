@@ -35,7 +35,7 @@ const Class = (props) => {
         setIsModal(true);
         setModalInfo({
             type: 'confirm',
-            message: 'Are you sure you want to cancel this reservation?',
+            message: 'Are you sure you want to cancel this reservation? If you signed up for this class with a punchpass, a punch will added back to your punchpass.',
             function: handleDeleteSubmit
         })
     }

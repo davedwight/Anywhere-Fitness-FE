@@ -14,11 +14,13 @@ import React from 'react';
 const SearchClass = (props) => {
 
     const { setIsModal, info, clientItems, setClientItems, setModalInfo} = props;
-    
-    const punchpassMatch = clientItems.punchpasses.filter(el => el.type === info.type)
-    console.log('punchpassMatch: ', punchpassMatch)
 
     const handleAddClick = () => {
+
+        console.log('info: ', info);
+        const punchpassMatch = clientItems.punchpasses.filter(el => el.type === info.type)[0];
+        console.log('punchpassMatch: ', punchpassMatch);
+
         if (clientItems.classes.some(el => el.id === info.id)) {
             setIsModal(true);
             setModalInfo({
@@ -39,16 +41,15 @@ const SearchClass = (props) => {
             setIsModal(true);
             setModalInfo({
                 type: 'success',
-                message: `You have no more punches left on your ${punchpassMatch.type} punchpass. Delete this punchpass and purchase another to sign up for this class.`, 
+                message: `You have no more punches left on your ${punchpassMatch.type} punchpass. Delete this punchpass from your profile and purchase another to sign up for this class.`, 
                 function: null
             });
         // the client doesn't have a punchpass of the same type
         } else if (clientItems.punchpasses.some(el => el.type !== info.type)) {
-            console.log('info: ', info)
             setIsModal(true);
             setModalInfo({
                 type: 'success',
-                message: `You don't have a punchpass for ${info.type} classes. Purchase a punch pass to sign up for this class.`, 
+                message: `You don't have a punchpass for ${info.type} classes. Purchase a punchpass to sign up for this class.`, 
                 function: null
             });
         } else {
@@ -63,10 +64,11 @@ const SearchClass = (props) => {
 
     const handleAddSubmit = () => {
         console.log("Inside handleAddSubmit in SearchClass");
-            setClientItems({
-                classes: [...clientItems.classes, info],
-                punchpasses: [...clientItems.punchpasses]
-            });
+        setIsModal(false);
+        setClientItems({
+            classes: [...clientItems.classes, info],
+            punchpasses: [...clientItems.punchpasses]
+        });
         // axiosWithAuth()
         //     .post('/api/add-class', info)
         //     .then(res => {
