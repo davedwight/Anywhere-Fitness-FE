@@ -15,6 +15,9 @@ const SearchClass = (props) => {
 
     const { setIsModal, info, clientItems, setClientItems, setModalInfo} = props;
     
+    const punchpassMatch = clientItems.punchpasses.filter(el => el.type === info.type)
+    console.log('punchpassMatch: ', punchpassMatch)
+
     const handleAddClick = () => {
         if (clientItems.classes.some(el => el.id === info.id)) {
             setIsModal(true);
@@ -23,12 +26,37 @@ const SearchClass = (props) => {
                 message: 'You are already signed up for this class.', 
                 function: null
             });
+        // the client has a punchpass of the same type with available punches
+        } else if (clientItems.punchpasses.some(el => el.type === info.type) && punchpassMatch.punches_available > punchpassMatch.punches_used) {
+            setIsModal(true);
+            setModalInfo({
+                type: 'confirm',
+                message: `This will use a punch on your ${punchpassMatch.type} punchpass. You will have ${(punchpassMatch.punches_available - punchpassMatch.punches_used) - 1} punches remaining.`, 
+                function: handleAddSubmit
+            });
+        // the client has a punchpass of the same type with no available punches
+        } else if (clientItems.punchpasses.some(el => el.type === info.type) && punchpassMatch.punches_available === punchpassMatch.punches_used) {
+            setIsModal(true);
+            setModalInfo({
+                type: 'success',
+                message: `You have no more punches left on your ${punchpassMatch.type} punchpass. Delete this punchpass and purchase another to sign up for this class.`, 
+                function: null
+            });
+        // the client doesn't have a punchpass of the same type
+        } else if (clientItems.punchpasses.some(el => el.type !== info.type)) {
+            console.log('info: ', info)
+            setIsModal(true);
+            setModalInfo({
+                type: 'success',
+                message: `You don't have a punchpass for ${info.type} classes. Purchase a punch pass to sign up for this class.`, 
+                function: null
+            });
         } else {
             setIsModal(true);
             setModalInfo({
                 type: 'success',
-                message: 'You have successfully signed up for this class. You can reschedule or remove this class in your profile.', 
-                function: handleAddSubmit
+                message: `Sorry, there seems to have been an error.`, 
+                function: null
             });
         }
     }
