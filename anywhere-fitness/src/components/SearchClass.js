@@ -17,9 +17,7 @@ const SearchClass = (props) => {
 
     const handleAddClick = () => {
 
-        console.log('info: ', info);
         const punchpassMatch = clientItems.punchpasses.filter(el => el.type === info.type)[0];
-        console.log('punchpassMatch: ', punchpassMatch);
 
         if (clientItems.classes.some(el => el.id === info.id)) {
             setIsModal(true);
@@ -63,11 +61,24 @@ const SearchClass = (props) => {
     }
 
     const handleAddSubmit = () => {
+        const punchpassMatch = clientItems.punchpasses.filter(el => el.type === info.type)[0];
+        console.log('client items: ', clientItems);
+        console.log('punchpassMatch: ', punchpassMatch);
         console.log("Inside handleAddSubmit in SearchClass");
         setIsModal(false);
         setClientItems({
             classes: [...clientItems.classes, info],
-            punchpasses: [...clientItems.punchpasses]
+            punchpasses: [...clientItems.punchpasses.map(el => {
+                    if (el.id === punchpassMatch.id) {
+                        return {
+                            ...el, 
+                            punches_used: el.punches_used + 1
+                        };
+                    } else {
+                        return el;
+                    }
+                })
+            ]
         });
         // axiosWithAuth()
         //     .post('/api/add-class', info)

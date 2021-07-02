@@ -49,6 +49,7 @@ const Punchpass = (props) => {
             <td>{type}</td>
             <td>{punches_used}</td>
             <td>{punches_available}</td>
+            <td>{punches_available - punches_used}</td>
             <td><button onClick={handleDeleteClick}>Remove pass</button></td>
         </tr>
     )

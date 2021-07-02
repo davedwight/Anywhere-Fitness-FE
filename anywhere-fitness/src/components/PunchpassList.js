@@ -22,6 +22,7 @@ const PunchpassList = (props) => {
                     <th>Type</th>
                     <th>Used punches</th>
                     <th>Total punches</th>
+                    <th>Punches Remaining</th>
                 </tr>
                 {punchpasses.map(el => (
                     <Punchpass 
