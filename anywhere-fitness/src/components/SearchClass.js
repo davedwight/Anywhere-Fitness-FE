@@ -63,7 +63,7 @@ const SearchClass = (props) => {
     const handleAddSubmit = () => {
         setIsModal(false);
         setClientItems({
-            classes: [...clientItems.classes, info],
+            classes: [...clientItems.classes, {...info, current_attendees: info.current_attendees + 1}],
             punchpasses: [...clientItems.punchpasses.map(el => {
                     if (el.id === punchpassMatch.id) {
                         return {
