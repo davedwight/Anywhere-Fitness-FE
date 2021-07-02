@@ -16,56 +16,13 @@ import React, { useEffect } from 'react';
 import ClassList from './ClassList';
 import PunchpassList from './PunchpassList';
 
-const mockGetClientItems = {
-    classes: [
-        {
-            id: 1,
-            name: 'Sweat', 
-            time: '1pm', 
-            date: 'June 24',
-            duration: '1 hour', 
-            type: 'HIIT', 
-            intensity: 3, 
-            location: '114 Thompson St', 
-            current_attendees: 13, 
-            class_size: 25
-        },
-        {
-            id: 2,
-            name: 'Run run', 
-            time: '3pm', 
-            date: 'June 30',
-            duration: '30 mins', 
-            type: 'Cardio', 
-            intensity: 2, 
-            location: '452 Broad St', 
-            current_attendees: 22, 
-            class_size: 25
-        }
-    ],
-    punchpasses: [
-        {
-            id: 1,
-            type: 'boxing', 
-            punches_used: 5,
-            punches_available: 10
-        },
-        {
-            id: 2,
-            type: 'HIIT', 
-            punches_used: 7,
-            punches_available: 15
-        }
-    ]
-};
-
 const Profile = (props) => {
 
     const { setIsModal, setModalInfo, clientItems, setClientItems } = props;
     
     const getData = () => {
         console.log("Inside Profile getData");
-        clientItems.classes.length === 0 && clientItems.punchpasses.length === 0 ? setClientItems(mockGetClientItems) : setClientItems(clientItems);
+        setClientItems(clientItems)
         // axiosWithAuth()
         //     .get('/api/client-items')
         //     .then(res => {
@@ -101,6 +58,9 @@ const Profile = (props) => {
                 <PunchpassList 
                     punchpasses={clientItems.punchpasses} 
                     setIsModal={setIsModal} 
+                    setModalInfo={setModalInfo}
+                    clientItems={clientItems}
+                    setClientItems={setClientItems}
                 />
             </div>
 

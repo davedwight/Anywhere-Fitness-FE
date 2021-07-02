@@ -14,22 +14,22 @@ import SearchPunchpass from './SearchPunchpass';
 
 const mockGetClientPunchpassSearch = [
     {
-        id: 1,
+        id: 3,
         type: 'cardio', 
-        punches_used: 6, 
-        punches_available: 10
+        punches_available: 10,
+        price: 150
     },
     {
-        id: 2,
-        type: 'cardio', 
-        punches_used: 6, 
-        punches_available: 10
+        id: 4,
+        type: 'HIIT', 
+        punches_available: 10,
+        price: 200
     }
 ]
 
 const SearchPunchpasses = (props) => {
 
-    const { setIsModal, setTypeModal, clientPunchpassSearch, setClientPunchpassSearch } = props;
+    const { setIsModal, setModalInfo, clientPunchpassSearch, setClientPunchpassSearch, clientItems, setClientItems } = props;
 
     const getData = () => {
         console.log('Inside SearchPunchpasses getData');
@@ -54,15 +54,17 @@ const SearchPunchpasses = (props) => {
                 <tbody>
                 <tr className='table-header-row'>
                     <th>Type</th>
-                    <th>Used punches</th>
                     <th>Total punches</th>
+                    <th>Price</th>
                 </tr>
                 {clientPunchpassSearch.map(el => (
                     <SearchPunchpass 
                         key={el.id} 
                         info={el} 
-                        setIsModal={setIsModal} 
-                        setTypeModal={setTypeModal} 
+                        setIsModal={setIsModal}
+                        setModalInfo={setModalInfo}
+                        clientItems={clientItems}
+                        setClientItems={setClientItems}
                     />
                 ))}
                 </tbody>

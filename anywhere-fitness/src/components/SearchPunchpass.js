@@ -8,22 +8,77 @@
 // Edit button that renders EditPunchpass
 import React from 'react';
 
+// import axiosWithAuth from './../utils/axiosWithAuth';
+
 const SearchPunchpass = (props) => {
 
-    const { setIsModal, setTypeModal } = props;
-    const { type, punches_used, punches_available } = props.info;
+    const { setIsModal, info, clientItems, setClientItems, setModalInfo} = props;
+    const { type, punches_available, price } = props.info;
 
-    const handleAddPass = () => {
+    const handleAddClick = () => {
+        if (clientItems.punchpasses.some(el => el.type === info.type)) {
+            setIsModal(true);
+            setModalInfo({
+                type: 'confirm',
+                message: 'You already have a punchpass of the same type. Are you sure you want to buy this punchpass?', 
+                function: handleAddSubmitConfirm
+            });
+        } else {
+            setIsModal(true);
+            setModalInfo({
+                type: 'confirm',
+                message: `Please confirm to finalize this purchase. Your card will be charged $${price}.00`, 
+                function: handleAddSubmit
+            });
+        }
+    }
+
+    const handleAddSubmitConfirm = () => {
         setIsModal(true);
-        setTypeModal('cancelPunchpass');
+        setModalInfo({
+            type: 'confirm',
+            message: `Please confirm to finalize this purchase. Your card will be charged $${price}.00`, 
+            function: handleAddSubmit
+        });
+    }
+
+    const handleAddSubmit = () => {
+        console.log("Inside handleAddSubmit in SearchPunchpass");
+            setIsModal(false);
+            setClientItems({
+                classes: [...clientItems.classes],
+                punchpasses: [...clientItems.punchpasses, {
+                    id: info.id,
+                    type: type,
+                    punches_used: 0,
+                    punches_available: punches_available
+                }]
+            });
+        // axiosWithAuth()
+        //     .post('/api/buy-punchpass', info)
+        //     .then(res => {
+        //         //set class state in my classes to reflect backend change
+        //         setClientItems({
+        //             classes: [...clientItems.classes],
+        //             punchpasses: [...clientItems.punchpasses, {
+        //                 id: info.id,
+        //                 type: type,
+        //                 punches_used: 0,
+        //                 punches_available: price
+        //             }]
+        //         });
+        //     })
+        //     .catch(err => {
+        //         console.log(err)
+        //     })
     }
 
     return (
         <tr className='table-data-row' id='punchpass'>
             <td>{type}</td>
-            <td>{punches_used}</td>
             <td>{punches_available}</td>
-            <td><button onClick={handleAddPass}>Remove pass</button></td>
+            <td>{price}</td>
+            <td><button onClick={handleAddClick}>Buy</button></td>
         </tr>
     )
 }
