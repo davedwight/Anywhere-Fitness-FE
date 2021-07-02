@@ -8,20 +8,48 @@
 // Edit button that renders EditPunchpass
 import React from 'react';
 
+// import axiosWithAuth from './../utils/axiosWithAuth';
+
 const Punchpass = (props) => {
 
-    const handleRemovePass = () => {
-        props.setIsModal(true);
-        props.setTypeModal('cancelPunchpass');
+    const { setIsModal, setModalInfo, clientItems, setClientItems } = props;
+    const { type, punches_used, punches_available } = props.info;
+
+    const handleDeleteClick = () => {
+        setIsModal(true);
+        setModalInfo({
+            type: 'confirm',
+            message: 'Are you sure you want to remove this punchpass? Any remaining punches will be lost.',
+            function: handleDeleteSubmit
+        })
     }
 
-    const { type, punches_used, punches_available } = props.info;
+    const handleDeleteSubmit = () => {
+        setIsModal(false);
+        setClientItems({
+            classes: [...clientItems.classes],
+            punchpasses: [...clientItems.punchpasses.filter(el => el.id !== props.info.id)]
+        })
+        // axiosWithAuth()
+        //     .delete(`/api/delete/client-punchpass/${props.info.id}`)
+        //     .then(res => {
+        //         setIsModal(false);
+        //         setClientItems({
+        //             classes: [...clientItems.classes],
+        //             punchpasses: [...clientItems.punchpasses.filter(el => el.id !== props.info.id)]
+        //         })
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     })
+    }
+
     return (
         <tr className='table-data-row' id='punchpass'>
             <td>{type}</td>
             <td>{punches_used}</td>
             <td>{punches_available}</td>
-            <td><button onClick={handleRemovePass}>Remove pass</button></td>
+            <td><button onClick={handleDeleteClick}>Remove pass</button></td>
         </tr>
     )
 }

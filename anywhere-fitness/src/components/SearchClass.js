@@ -28,7 +28,7 @@ const SearchClass = (props) => {
             setModalInfo({
                 type: 'success',
                 message: 'You have successfully signed up for this class. You can reschedule or remove this class in your profile.', 
-                function: handleAddSubmit()
+                function: handleAddSubmit
             });
         }
     }

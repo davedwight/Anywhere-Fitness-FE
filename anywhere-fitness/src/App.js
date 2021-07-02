@@ -21,8 +21,46 @@ const initialAuthValue = {
 }
 
 const initialClientItems = {
-  classes: [],
-  punchpasses: []
+  classes: [
+      {
+          id: 1,
+          name: 'Sweat', 
+          time: '1pm', 
+          date: 'June 24',
+          duration: '1 hour', 
+          type: 'HIIT', 
+          intensity: 3, 
+          location: '114 Thompson St', 
+          current_attendees: 13, 
+          class_size: 25
+      },
+      {
+          id: 2,
+          name: 'Run run', 
+          time: '3pm', 
+          date: 'June 30',
+          duration: '30 mins', 
+          type: 'Cardio', 
+          intensity: 2, 
+          location: '452 Broad St', 
+          current_attendees: 22, 
+          class_size: 25
+      }
+  ],
+  punchpasses: [
+      {
+          id: 1,
+          type: 'boxing', 
+          punches_used: 5,
+          punches_available: 10
+      },
+      {
+          id: 2,
+          type: 'HIIT', 
+          punches_used: 7,
+          punches_available: 15
+      }
+  ]
 };
 
 const initialModalInfo = {
@@ -166,7 +204,6 @@ const App = () => {
             <SearchClasses 
               setIsModal={setIsModal}
               setModalInfo={setModalInfo}
-              setTypeModal={setTypeModal}
               clientClassSearch={clientClassSearch}
               setClientClassSearch={setClientClassSearch}
               clientItems={clientItems}
@@ -177,9 +214,11 @@ const App = () => {
           <Route path='/search-punchpasses'>
             <SearchPunchpasses 
               setIsModal={setIsModal}
-              setTypeModal={setTypeModal}
+              setModalInfo={setModalInfo}
               clientPunchpassSearch={clientPunchpassSearch}
               setClientPunchpassSearch={setClientPunchpassSearch}
+              clientItems={clientItems}
+              setClientItems={setClientItems}
             />
           </Route>
 
