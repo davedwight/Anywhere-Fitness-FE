@@ -40,8 +40,11 @@ const SearchClasses = (props) => {
 
     const getData = () => {
         console.log('Inside SearchClasses getData');
-        //filtering out classes for which the client is currently signed up
-        const filteredClasses = mockGetClientClassSearch.filter(el => !clientItems.classes.map(el => el.id).includes(el.id));
+        // filtering out full classes
+        const nonFullClasses = mockGetClientClassSearch.filter(el => el.current_attendees < el.class_size);
+        console.log('nonFullClasses: ', nonFullClasses);
+        //filtering out remaining classes for which the client is currently signed up
+        const filteredClasses = nonFullClasses.filter(el => !clientItems.classes.map(el => el.id).includes(el.id));
         const noResults = () => {
             setIsModal(true);
             setModalInfo({
