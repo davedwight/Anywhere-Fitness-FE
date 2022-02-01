@@ -70,7 +70,7 @@ const SearchClasses = (props) => {
     }, []); // eslint-disable-line
 
     return (
-        <div className='container'>
+        <section>
             <table>
                 <tbody>
                 <tr className='table-header-row'>
@@ -97,7 +97,7 @@ const SearchClasses = (props) => {
                 ))}
                 </tbody>
             </table>
-        </div>
+        </section>
     )
 }
 

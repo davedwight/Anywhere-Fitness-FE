@@ -1,0 +1,86 @@
+header {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: 99;
+}
+
+.nav-wrapper {
+    margin: 0 auto;
+    height: 100%;
+    width: 90%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+img {
+    /* margin-left: 30px; */
+    width: 85px;
+}
+
+button {
+    margin-bottom: 5px;
+    display: inline-block;
+    text-align: center;
+    width: 150px;
+    height: 35px;
+    background-color: #474973;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+}
+
+button > a {
+    color: white;
+}
+
+button > a:hover {
+    opacity: 1;
+    color: white;
+}
+
+a {
+    padding: 0;
+    margin: 15px;
+    text-decoration: none;
+    color: #161b33;
+    font-weight: bold;
+    transition: 300ms;
+    border-bottom: 3px solid transparent;
+}
+
+a:hover {
+    color: #474973;
+    border-color: #474973;
+}
+
+.active {
+    color: #474973;
+    border-color: #474973;
+}
+
+.signup-1 {
+    border: none;
+}
+
+.nav-wrapper > a {
+    border: none;
+}
+
+.nav-wrapper > a:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}

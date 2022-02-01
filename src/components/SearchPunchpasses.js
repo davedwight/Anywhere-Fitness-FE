@@ -49,7 +49,7 @@ const SearchPunchpasses = (props) => {
     }, []); // eslint-disable-line
 
     return (
-        <div className='container'>
+        <section>
             <table>
                 <tbody>
                 <tr className='table-header-row'>
@@ -69,7 +69,7 @@ const SearchPunchpasses = (props) => {
                 ))}
                 </tbody>
             </table>
-        </div>
+        </section>
     )
 }
 
