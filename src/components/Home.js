@@ -28,11 +28,10 @@ const Home = () => {
                         The easiest way to stay committed to your goals, no
                         matter where you are.
                     </h3>
-                    <button className="signup-button">
-                        <Link className="signup" to="/signup">
-                            Sign Up
-                        </Link>
-                    </button>
+
+                    <Link className="signup" to="/signup">
+                        <button className="signup-button">Sign Up</button>
+                    </Link>
                 </div>
             </section>
         </div>
